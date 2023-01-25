@@ -12,6 +12,11 @@
 set $alt Mod1
 set $mod Mod4
 
+gaps inner 6
+
+smart_gaps on
+smart_borders on
+
 for_window [class="TelegramDesktop"] floating enable
 for_window [class="thunderbird"] floating enable
 
@@ -216,7 +221,9 @@ bindsym $mod+r mode "resize"
     #status_command i3status
 #}
 
-client.unfocused  #5294e2 #5294e2 #d8dee9 #414c52 #5294e2
-client.focused    #c778dd #c778dd #1d1f21 #414c52 #c778dd
-client.urgent     #e86b74 #e86b74 #1d1f21 #414c52 #e86b74
-client.background #d8dee9
+client.focused_inactive #394c81 #394c81 #d8dee9 #414c52 #394c81
+client.focused          #c778dd #c778dd #1d1f21 #414c52 #c778dd
+client.unfocused        #5294e2 #5294e2 #d8dee9 #414c52 #5294e2
+client.urgent           #e86b74 #e86b74 #1d1f21 #414c52 #e86b74
+client.placeholder      #1d1f21 #1d1f21 #d8dee9 #1d1f21 #1d1f21
+client.background       #d8dee9
