@@ -5,7 +5,7 @@
     const WEBSITES = [
         website("Steam", "https://steamcommunity.com/id/dax89", "https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg"),
         website("YouTube", "https://youtube.com", "https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png"),
-        website("Twitch", "https://www.twitch.tv", "https://www.tailorbrands.com/wp-content/uploads/2021/04/twitch-logo.png"),
+        website("3BMeteo", "https://www.3bmeteo.com/meteo/macomer", "https://www.3bmeteo.com/images/site/logo_3b.png"),
         website("GitHub", "https://github.com", "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"),
         website("Twitter", "https://twitter.com", "https://upload.wikimedia.org/wikipedia/commons/4/4f/Twitter-logo.svg"),
         website("Reddit", "https://reddit.com", "https://www.redditinc.com/assets/images/site/reddit-logo.png"),
