@@ -20,6 +20,7 @@ smart_borders on
 for_window [class="TelegramDesktop"] floating enable
 for_window [class="thunderbird"] floating enable
 for_window [class="SpeedCrunch"] floating enable
+for_window [class="Gnome-screenshot"] floating enable
 for_window [class="baka-mplayer"] floating enable
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -59,14 +60,7 @@ exec --no-startup-id dex -ae i3
 exec --no-startup-id redshift -v &
 
 # Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
-
-# Clipboard Screenshots
-bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym --release Print exec --no-startup-id gnome-screenshot -i
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
