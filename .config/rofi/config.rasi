@@ -31,11 +31,16 @@
 }
 
 configuration {
-    modi: "drun,run,filebrowser";
+    modi: "drun,clipboard:greenclip print,filebrowser,run";
     show-icons: false;
     display-drun: " Apps";
     display-run: " Run";
     display-filebrowser: " File Browser";
+    display-clipboard: " Clipboard";
+}
+
+* {
+    font: "sans 13";
 }
 
 window {
@@ -119,6 +124,7 @@ mode-switcher {
     border-color: @separatorcolor;
 }
 button {
+    font: "sans 14";
     padding: 6px 0 6px 0;
     text-color: @foreground;
 }

@@ -32,6 +32,9 @@ font pango:Cantarell Bold 10
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
+# Clipboard Tool
+exec --no-startup-id greenclip daemon > /dev/null
+
 # Load Local HTTP Server
 exec --no-startup-id ~/.me/scripts/darkhttpd.sh --daemon
 
