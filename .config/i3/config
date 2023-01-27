@@ -16,6 +16,7 @@ gaps inner 6
 
 smart_gaps on
 smart_borders on
+focus_follows_mouse no
 
 for_window [class="TelegramDesktop"] floating enable
 for_window [class="thunderbird"] floating enable
