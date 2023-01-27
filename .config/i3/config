@@ -23,7 +23,7 @@ for_window [class="TelegramDesktop"] floating enable
 for_window [class="discord"] floating enable
 for_window [class="thunderbird"] floating enable
 for_window [class="SpeedCrunch"] floating enable
-for_window [class="Gnome-screenshot"] floating enable
+for_window [class="Gnome-screenshot"] floating enable sticky enable
 for_window [class="baka-mplayer"] floating enable
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -66,7 +66,8 @@ exec --no-startup-id dex -ae i3
 exec --no-startup-id redshift -v &
 
 # Screenshots
-bindsym --release Print exec --no-startup-id gnome-screenshot -i
+bindsym --release Print exec --no-startup-id gnome-screenshot
+bindsym --release Shift+Print exec --no-startup-id gnome-screenshot -i
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -81,7 +82,7 @@ bindsym --release Print exec --no-startup-id gnome-screenshot -i
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 # Use light to adjust backlight
 bindsym XF86MonBrightnessUp exec --no-startup-id light -s sysfs/backlight/intel\_backlight -A 5
