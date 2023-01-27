@@ -18,7 +18,9 @@ smart_gaps on
 smart_borders on
 focus_follows_mouse no
 
+for_window [class="Steam"] floating enable
 for_window [class="TelegramDesktop"] floating enable
+for_window [class="discord"] floating enable
 for_window [class="thunderbird"] floating enable
 for_window [class="SpeedCrunch"] floating enable
 for_window [class="Gnome-screenshot"] floating enable
