@@ -12,7 +12,7 @@
 set $alt Mod1
 set $mod Mod4
 
-gaps inner 6
+gaps inner 8
 
 smart_gaps on
 smart_borders on

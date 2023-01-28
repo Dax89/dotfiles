@@ -5,9 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# SSH workaround for urxvt
-TERM=xterm-256color
-
 alias ls='ls --color=auto'
 alias vi="nvim"
 alias vim="nvim"
