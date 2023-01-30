@@ -13,14 +13,14 @@ sub notify_volume {
     elsif($vol > 75 && $vol <= 100) { $icon = "audio-volume-high-symbolic"; }
     else { $icon = "audio-volume-overamplified-symbolic" }
 
-    system("dunstify -r $VOLUME_ID -h int:value:$vol '$vol%' -i $icon -u low");
+    system("dunstify -r $VOLUME_ID -a Volume -h int:value:$vol 'Volume [$vol%]' -i $icon -u low");
 }
 
 sub is_muted { return `pactl get-sink-mute \@DEFAULT_SINK@` =~ /yes\Z/; }
 
 sub toggle_mute {
     system("pactl set-sink-mute \@DEFAULT_SINK@ toggle");
-    if(is_muted()) { system("dunstify -r $VOLUME_ID 'OFF' -i audio-volume-muted-symbolic -u low"); }
+    if(is_muted()) { system("dunstify -a Volume -r $VOLUME_ID 'OFF' -i audio-volume-muted-symbolic -u low"); }
     else { notify_volume(); }
 }
 
