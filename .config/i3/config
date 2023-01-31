@@ -111,6 +111,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym --whole-window $mod+button2 kill
+bindsym --release button2 kill
 bindsym $mod+Q kill
 bindsym $alt+F4 kill
 
