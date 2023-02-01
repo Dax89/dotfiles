@@ -40,7 +40,7 @@ configuration {
 }
 
 * {
-    font: "sans 13";
+    font: "sans 12";
 }
 
 window {
@@ -124,7 +124,7 @@ mode-switcher {
     border-color: @separatorcolor;
 }
 button {
-    font: "sans 14";
+    font: "sans 12";
     padding: 6px 0 6px 0;
     text-color: @foreground;
 }

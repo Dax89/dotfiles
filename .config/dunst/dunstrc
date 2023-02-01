@@ -452,10 +452,6 @@
 #    summary = *twitter.com*
 #    urgency = normal
 
-[telgram-desktop]
-    desktop_entry = telegramdesktop
-    urgency = critical
-
 [stack-volumes]
     appname = "i3-volume"
     set_stack_tag = "volume"
