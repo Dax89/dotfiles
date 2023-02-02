@@ -1,0 +1,1 @@
+{"config":[],"vars":[],"name":"newtab","builder":"node","runconfig":{"dev":{"name":"dev","command":"vite"},"build":{"selected":true,"command":"vite build","name":"build"}},"selrunconfig":"build","type":"javascript"}
