@@ -3,17 +3,24 @@
     background:                  #1d1f21;
     primary:                     #5294e2;
     secondary:                   #c778dd;
+    danger:                      #e06b74;
+    warning:                     #e5c07a;
+    success:                     #98c379;
+
     selected-foreground:         @background;
     selected-background:         @primary;
+    active-foreground:           @secondary;
+    active-background:           @background;
+    urgent-foreground:           @background;
+    urgent-background:           @danger;
+    selected-active-foreground:  @background;
+    selected-active-background:  @success;
+
     alternate-normal-background: rgba ( 0, 0, 0, 0 % );
     red:                         rgba ( 220, 50, 47, 100 % );
     selected-urgent-foreground:  rgba ( 2, 20, 63, 100 % );
-    urgent-foreground:           @background;
     alternate-urgent-background: @foreground;
-    active-foreground:           #ff0000;
     lightbg:                     rgba ( 238, 232, 213, 100 % );
-    selected-active-foreground:  rgba ( 2, 20, 63, 100 % );
-    alternate-active-background: rgba ( 0, 0, 0, 0 % );
     alternate-normal-foreground: @foreground;
     normal-background:           @background;
     lightfg:                     rgba ( 88, 104, 117, 100 % );
@@ -21,19 +28,24 @@
     border-color:                @primary;
     spacing:                     2;
     separatorcolor:              rgba ( 219, 223, 188, 100 % );
-    urgent-background:           rgba ( 0, 0, 208, 0 % );
     selected-urgent-background:  rgba ( 255, 129, 127, 100 % );
     alternate-urgent-foreground: @urgent-foreground;
     background-color:            rgba ( 0, 0, 0, 0 % );
     alternate-active-foreground: @active-foreground;
-    active-background:           rgba ( 0, 0, 208, 0 % );
-    selected-active-background:  rgba ( 138, 196, 255, 100 % );
+    alternate-active-background: rgba ( 0, 0, 0, 0 % );
 }
 
 configuration {
-    modi: "drun,clipboard:greenclip print,filebrowser,run";
+    modi: [
+        drun,
+        "mixer:~/.config/rofi/mixer.pl",
+        "clipboard:greenclip",
+        filebrowser,
+        run
+    ];
     show-icons: true;
     display-drun: " Apps";
+    display-mixer: "🕩 Mixer";
     display-run: " Run";
     display-filebrowser: " File Browser";
     display-clipboard: " Clipboard";
