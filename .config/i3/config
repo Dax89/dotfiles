@@ -218,8 +218,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-client.focused_inactive #394c81 #394c81 #d8dee9 #5294e2 #1d1f21
-client.unfocused        #1d1f21 #394c81 #d8dee9 #5294e2 #1d1f21
+client.focused_inactive #394c81 #394c81 #d8dee9 #5294e2 #394c81
+client.unfocused        #1d1f21 #394c81 #d8dee9 #5294e2 #394c81
 client.focused          #c778dd #c778dd #1d1f21 #5294e2 #c778dd
 client.urgent           #e86b74 #e86b74 #1d1f21 #5294e2 #e86b74
 client.placeholder      #1d1f21 #1d1f21 #d8dee9 #1d1f21 #1d1f21
