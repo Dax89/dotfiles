@@ -54,7 +54,7 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id ~/.config/polybar/polybar.sh
 
 # Start RedShift
-exec --no-startup-id redshift -v &
+exec --no-startup-id redshift
 
 # Screenshots
 bindsym --release Shift+Print exec --no-startup-id gnome-screenshot
@@ -107,12 +107,10 @@ bindsym --whole-window $mod+button2 kill
 bindsym $mod+Q kill
 bindsym $alt+F4 kill
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec --no-startup-id dmenu_run
-# A more modern dmenu replacement is rofi:
-bindsym XF86Launch1 exec "rofi -show drun"
-bindsym $mod+d exec "rofi -show drun"
-bindsym $alt+F2 exec "rofi -show drun"
+# start rofi (a program launcher)
+bindsym XF86Launch1 exec --no-startup-id "rofi -show drun"
+bindsym $mod+d exec --no-startup-id "rofi -show drun"
+bindsym $alt+F2 exec --no-startup-id "rofi -show drun"
 
 # change focus
 bindsym $mod+Left focus left
@@ -220,15 +218,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-	#position top
-    #status_command i3status
-#}
-
-client.focused_inactive #394c81 #394c81 #d8dee9 #5294e2 #394c81
-client.unfocused        #394c81 #394c81 #d8dee9 #5294e2 #394c81
+client.focused_inactive #394c81 #394c81 #d8dee9 #5294e2 #1d1f21
+client.unfocused        #1d1f21 #394c81 #d8dee9 #5294e2 #1d1f21
 client.focused          #c778dd #c778dd #1d1f21 #5294e2 #c778dd
 client.urgent           #e86b74 #e86b74 #1d1f21 #5294e2 #e86b74
 client.placeholder      #1d1f21 #1d1f21 #d8dee9 #1d1f21 #1d1f21
