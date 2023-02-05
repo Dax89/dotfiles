@@ -41,9 +41,6 @@ exec --no-startup-id greenclip daemon > /dev/null
 # Load Local HTTP Server
 exec --no-startup-id ~/.me/scripts/darkhttpd.sh --daemon
 
-# Load X Resources
-exec --no-startup-id xrdb -merge ~/.Xresources
-
 # Enable Wallpaper
 exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper.jpg
 
