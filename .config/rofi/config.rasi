@@ -38,15 +38,11 @@
 configuration {
     modi: [
         drun,
-        "mixer:~/.config/rofi/mixer.pl",
-        "clipboard:greenclip",
         filebrowser
     ];
     show-icons: true;
     display-drun: " Apps";
-    display-mixer: "🕩 Mixer";
     display-filebrowser: " File Browser";
-    display-clipboard: " Clipboard";
 }
 
 * {
