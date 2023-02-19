@@ -19,6 +19,7 @@ smart_borders on
 #focus_follows_mouse no
 
 for_window [class="Steam"] floating enable
+for_window [class="steamwebhelper"] floating enable
 for_window [class="TelegramDesktop"] floating enable
 for_window [class="discord"] floating enable
 for_window [class="thunderbird"] floating enable
@@ -26,6 +27,7 @@ for_window [class="SpeedCrunch"] floating enable
 for_window [class="Gnome-screenshot"] floating enable sticky enable
 for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
+for_window [class="Vampire_Survivors"] floating enable
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
