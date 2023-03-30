@@ -2,7 +2,7 @@
 
 pkgname=st
 pkgver=0.9
-pkgrel=1
+pkgrel=2
 pkgdesc='A simple virtual terminal emulator for X.'
 arch=('i686' 'x86_64' 'armv7h' 'aarch64')
 license=('MIT')
@@ -11,13 +11,17 @@ url=https://st.suckless.org
 
 _patches=("terminfo.patch")
 
+_stpatches=("st-ligatures-20221120-0.9.diff")
+
 source=("https://dl.suckless.org/$pkgname/$pkgname-$pkgver.tar.gz"
         "config.h"
-        "${_patches[@]}")
+        "${_patches[@]}"
+        "${_stpatches[@]}")
 
 sha256sums=('f36359799734eae785becb374063f0be833cf22f88b4f169cd251b99324e08e7'
             'SKIP'
-            'f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23')
+            'SKIP'
+            'SKIP')
 
 _sourcedir=$pkgname-$pkgver
 _makeopts="--directory=$_sourcedir"
@@ -28,6 +32,11 @@ prepare() {
     for patch in "${_patches[@]}"; do
         echo "Applying patch $(basename $patch)..."
         patch --directory="$_sourcedir" --strip=0 < "$srcdir/$(basename $patch)"
+    done
+
+    for patch in "${_stpatches[@]}"; do
+        echo "Applying patch $(basename $patch)..."
+        patch --directory="$_sourcedir" --strip=1 < "$srcdir/$(basename $patch)"
     done
 }
 
