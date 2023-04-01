@@ -12,7 +12,7 @@ export default [
     website("Sella", "https://www.sella.it", "https://upload.wikimedia.org/wikipedia/commons/1/15/Banca_Sella_Logo.png"),
     website("Amazon", "https://www.amazon.it", "https://www.niascaportofino.it/wp-content/uploads/2016/10/amazon-logo.jpg"),
     website("eBay", "https://www.ebay.it", "https://img.freepik.com/free-icon/ebay_318-674223.jpg?w=2000"),
-    website("ChatGPT", "https://chat.openai.com", "https://seeklogo.com/images/C/chatgpt-logo-02AFA704B5-seeklogo.com.png"),
+    website("REDasm", "https://redasm.io/", "https://avatars.githubusercontent.com/u/35189184"),
     website("GodBolt", "https://godbolt.org", "https://avatars.githubusercontent.com/u/57653830"),
     website("Pinterest", "https://www.pinterest.it", "https://play-lh.googleusercontent.com/dVsv8Hc4TOUeLFAahxR8KANg22W9dj2jBsTW1VHv3CV-5NCZjP9D9i2j5IpfVx2NTB8=s0?imgmax=0"),
 ];
