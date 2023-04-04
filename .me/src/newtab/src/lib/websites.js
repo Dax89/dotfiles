@@ -8,7 +8,7 @@ export default [
     website("Twitter", "https://twitter.com", "https://upload.wikimedia.org/wikipedia/commons/4/4f/Twitter-logo.svg"),
     website("Reddit", "https://reddit.com", "https://www.redditinc.com/assets/images/site/reddit-logo.png"),
     website("Notion", "https://www.notion.so", "https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg"),
-    website("FCA", "https://fcabank.it/area-clienti", "https://fcabankgroup.com/images/icons/flags/IconaDrivalia.png"),
+    website("CA Auto Bank", "https://www.ca-autobank.it/my-ca-autobank", "https://www.ca-autobank.it/wp-content/themes/CAAB/assets/img/favicon/bank/apple-touch-icon.png?v=24022023"),
     website("Sella", "https://www.sella.it", "https://upload.wikimedia.org/wikipedia/commons/1/15/Banca_Sella_Logo.png"),
     website("Amazon", "https://www.amazon.it", "https://www.niascaportofino.it/wp-content/uploads/2016/10/amazon-logo.jpg"),
     website("eBay", "https://www.ebay.it", "https://img.freepik.com/free-icon/ebay_318-674223.jpg?w=2000"),
