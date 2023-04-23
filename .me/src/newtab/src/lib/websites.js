@@ -5,7 +5,7 @@ export default [
     website("YouTube", "https://youtube.com", "https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png"),
     website("3BMeteo", "https://www.3bmeteo.com/meteo/macomer", "https://www.3bmeteo.com/images/site/logo_3b.png"),
     website("GitHub", "https://github.com", "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"),
-    website("Twitter", "https://twitter.com", "https://upload.wikimedia.org/wikipedia/commons/3/39/Logo_of_Twitter%2C_Inc..svg"),
+    website("Twitter", "https://twitter.com", "https://logodownload.org/wp-content/uploads/2014/09/twitter-logo-.png"),
     website("Reddit", "https://reddit.com", "https://www.redditinc.com/assets/images/site/reddit-logo.png"),
     website("Notion", "https://www.notion.so", "https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg"),
     website("CA Auto Bank", "https://www.ca-autobank.it/my-ca-autobank", "https://www.ca-autobank.it/wp-content/themes/CAAB/assets/img/favicon/bank/apple-touch-icon.png?v=24022023"),
