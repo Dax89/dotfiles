@@ -16,9 +16,9 @@ gaps inner 8
 
 smart_gaps on
 smart_borders on
-focus_follows_mouse yes
+focus_follows_mouse no
 
-for_window [class="Steam"] floating enable
+for_window [class="steam"] floating enable
 for_window [class="steamwebhelper"] floating enable
 for_window [class="TelegramDesktop"] floating enable
 for_window [class="discord"] floating enable
