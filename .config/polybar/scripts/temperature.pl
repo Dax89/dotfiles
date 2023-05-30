@@ -5,12 +5,32 @@ use JSON::PP;
 
 binmode(STDOUT, ":utf8");
 
-my $category = shift(@ARGV) or die("Invalid category");
-my $device = shift(@ARGV) or die("Invalid device");
-my $sensor = shift(@ARGV) or die("Invalid sensor");
+my @INTEL_CPU = ["coretemp-isa-0000", "Package id 0", "temp1_input"];
+my @AMD_CPU = ["k10temp-pci-00c3", "Tctl", "temp1_input"];
+my @CATEGORIES = (@INTEL_CPU, @AMD_CPU);
 
 my $output = `sensors -j`;
 my $sensors = decode_json($output);
-my $value = int($sensors->{$category}->{$device}->{$sensor});
+my $value = "???";
+
+for my $category (@CATEGORIES) {
+    my $obj = $sensors;
+    my $lastprop;
+
+    for my $cpuprop (@$category) {
+        if(exists $obj->{$cpuprop}) {
+            $obj = $obj->{$cpuprop};
+        }
+        else {
+           $obj = undef;
+           break;
+        }
+    }
+
+    if(defined $obj) {
+        $value = int($obj);
+        break;
+    }
+}
 
 print("$value°C");
