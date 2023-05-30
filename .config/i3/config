@@ -210,7 +210,7 @@ bindsym $mod+Mod2+KP_4 workspace number $ws4
 bindsym $mod+Mod2+KP_5 workspace number $ws5
 bindsym $mod+Mod2+KP_6 workspace number $ws6
 bindsym $mod+Mod2+KP_7 workspace number $ws7
-bindsym $mod+Mod2+KP_8 workspace number $ws9
+bindsym $mod+Mod2+KP_8 workspace number $ws8
 bindsym $mod+Mod2+KP_9 workspace number $ws9
 bindsym $mod+Mod2+KP_0 workspace number $ws10
 
