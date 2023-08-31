@@ -60,7 +60,7 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id ~/.config/polybar/polybar.sh
 
 # Execute OpenRGB
-exec --no-startup-id ~/.config/i3/openrgb.pl
+exec --no-startup-id ~/.config/i3/openrgb.rb
 
 # Start RedShift
 exec --no-startup-id redshift
@@ -89,9 +89,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -s sysfs/backlight/intel\
 bindsym XF86MonBrightnessDown exec --no-startup-id light -s sysfs/backlight/intel\_backlight -U 5
 
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/manage_volume.pl set-volume +1%
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/manage_volume.pl set-volume -1%
-bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/manage_volume.pl toggle-mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/manage_volume.rb set-volume +1%
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/manage_volume.rb set-volume -1%
+bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/manage_volume.rb toggle-mute
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Media player controls
@@ -113,7 +113,7 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec --no-startup-id "st -e tmux"
 
 # mixer
-bindsym $mod+m exec --no-startup-id "rofi -show Mixer -modi 'Mixer:~/.config/rofi/mixer.pl' -theme-str 'mode-switcher { enabled: false; }'"
+bindsym $mod+m exec --no-startup-id "rofi -show Mixer -modi 'Mixer:~/.config/rofi/mixer.rb' -theme-str 'mode-switcher { enabled: false; }'"
 
 # bluetooth
 bindsym $mod+b exec --no-startup-id rofi-bluetooth

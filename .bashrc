@@ -12,6 +12,8 @@ alias vim="nvim"
 alias dotfiles="/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias killtmux="kill -9 `pidof tmux`"
 
+# export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin"
+
 PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${LOGNAME}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
 PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
 
