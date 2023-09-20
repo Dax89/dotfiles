@@ -7,7 +7,9 @@ alias grep="grep --color=auto"
 alias dotfiles="/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 # Set Environment Variables
-# PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin" Ruby local binaries
+XDG_CURRENT_DESKTOP=i3
+PATH="$PATH:$HOME/.local/bin" # local binaries
+PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin" # Ruby local binaries
 
 # Load 'nnn' configuration
 . ~/.config/nnn/config.sh
