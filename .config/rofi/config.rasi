@@ -38,6 +38,7 @@
 configuration {
     modi: [ drun ];
     show-icons: true;
+    display-drun: " Apps";
 }
 
 * {
