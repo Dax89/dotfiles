@@ -27,10 +27,7 @@ for_window [class="SpeedCrunch"] floating enable
 for_window [class="Gnome-screenshot"] floating enable sticky enable
 for_window [class="vlc"] floating enable
 for_window [class="feh"] floating enable
-for_window [class="Gpicview"] floating enable
 for_window [class="Vampire_Survivors"] floating enable
-for_window [class="pcmanfm-qt"] floating enable
-for_window [class="lxqt-archiver"] floating enable
 for_window [class="^VirtualBox"] floating enable
 
 # Font for window titles. Will also be used by the bar unless a different font
