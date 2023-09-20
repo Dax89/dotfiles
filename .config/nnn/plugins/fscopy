@@ -1,0 +1,16 @@
+#!/bin/env ruby
+
+SELECTION_ROOT = File.join(Dir.home, '.config', 'nnn', '.selection')
+
+files = if File.exist?(SELECTION_ROOT) && !File.zero?(SELECTION_ROOT)
+          IO.read(SELECTION_ROOT).split("\0")
+        else
+          [File.join(ARGV[1], ARGV[0])]
+        end
+
+unless files.empty?
+  tocopy = files.map { |x| x.prepend 'file://' }
+                .join "\r\n"
+
+  system("echo -e '#{tocopy}' | xclip -i -selection clipboard -t text/uri-list")
+end

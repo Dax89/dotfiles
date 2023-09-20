@@ -1,9 +1,17 @@
-#! /bin/ruby
+#! /bin/bash
 
-def execute_if(cmd, args = '')
-  system("#{cmd} #{args}") if system("command -v #{cmd} > /dev/null")
-end
+[[ -f ~/.bash_profile ]] && . ~/.bash_profile
+
+function execute_if() {
+    cmd=$1
+    args=$2
+
+    if ! command -v "$cmd" &> /dev/null
+    then
+        "$cmd $args"
+    fi
+}
 
 execute_if 'numlockx'
-system 'xset r rate 250 50'
-system 'i3'
+xset r rate 250 50
+exec i3

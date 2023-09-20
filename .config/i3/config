@@ -25,7 +25,7 @@ for_window [class="discord"] floating enable
 for_window [class="thunderbird"] floating enable
 for_window [class="SpeedCrunch"] floating enable
 for_window [class="Gnome-screenshot"] floating enable sticky enable
-for_window [class="mpv"] floating enable
+for_window [class="vlc"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="Gpicview"] floating enable
 for_window [class="Vampire_Survivors"] floating enable
@@ -40,6 +40,9 @@ font pango:sans Bold 10
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
+
+# Device Manager
+exec --no-startup-id udiskie --no-automount --tray
 
 # Clipboard Tool
 exec --no-startup-id greenclip daemon > /dev/null
@@ -110,8 +113,10 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec --no-startup-id "st -e tmux"
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id "kitty --single-instance"
+bindsym $mod+Shift+Return exec --no-startup-id "kitty nnn"
+# bindsym $mod+Return exec --no-startup-id "st -e tmux"
 
 # mixer
 bindsym $mod+m exec --no-startup-id "rofi -show Mixer -modi 'Mixer:~/.config/rofi/mixer.rb' -theme-str 'mode-switcher { enabled: false; }'"
