@@ -1,0 +1,6 @@
+program_options:
+  tray: true
+  automount: false
+  notify: true
+  menu: flat
+  file_manager: kitty vifm
