@@ -38,6 +38,9 @@ font pango:sans Bold 10
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
+# DBus Services
+exec --no-startup-id ~/.me/scripts/org.vifm.FileManager1.rb
+
 # Device Manager
 exec --no-startup-id udiskie --no-automount --tray
 

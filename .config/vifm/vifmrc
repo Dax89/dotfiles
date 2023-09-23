@@ -1,0 +1,33 @@
+" vim: filetype=vim:
+
+" let $VIFM_SERVER_NAME = v:servername
+
+" Command used to edit files in various contexts.  The default is vim.
+" If you would like to use another vi clone such as Elvis or Vile
+" you will need to change this setting.
+if executable('vim')
+    set vicmd=vim
+elseif executable('nvim')
+    set vicmd=nvim
+elseif executable('elvis')
+    set vicmd=elvis\ -G\ termcap
+elseif executable('vile')
+    set vicmd=vile
+elseif $EDITOR != ''
+    echo 'Note: using `'.$EDITOR.'` as an editor'
+    let &vicmd = $EDITOR
+endif
+
+" Color scheme
+colorscheme papercolor-dark
+
+source $VIFM/config/layout.vifm
+source $VIFM/config/options.vifm
+source $VIFM/config/bookmarks.vifm
+source $VIFM/config/commands.vifm
+source $VIFM/config/filetypes.vifm
+source $VIFM/config/fileviewers.vifm
+source $VIFM/config/mappings.vifm
+
+" Icon decorations 
+source $VIFM/scripts/favicons.vifm

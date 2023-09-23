@@ -1,0 +1,12 @@
+#!/bin/env ruby
+
+files = ARGV[0].scan(/"([^"]+)"/).flatten
+path = ARGV[1]
+
+unless files.empty?
+  tocopy = files.map { |x| "file://#{path}/#{x}" }
+                .join "\r\n"
+  system("echo -e '#{tocopy}' | xclip -i -selection clipboard -t text/uri-list > /dev/null")
+end
+
+puts "#{files.length} files(s) copied to clipboard"

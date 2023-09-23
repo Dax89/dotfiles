@@ -1,0 +1,14 @@
+" vim: filetype=vim:
+
+" Show file and directory preview in right pane view
+" view!
+
+" Customize view columns a bit (enable ellipsis for truncated file names)
+" set viewcolumns=-{name}..,6{}.
+
+" Show vertical border
+" set fillchars=vborder:│
+
+" Filter-out build and temporary files
+" filter! {*.lo,*.o,*.d,*.class,*.pyc,*.pyo,.*~}
+

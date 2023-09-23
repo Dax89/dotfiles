@@ -1,0 +1,120 @@
+#!/bin/env ruby
+# rubocop:disable Style/GlobalVars
+
+# Supported Extensions:
+# zip, rar, 7z, tar.xz, tar.gz, tar.bz2
+
+require 'securerandom'
+require 'fileutils'
+
+$mode = ARGV[0]
+$workdir = ARGV[1]
+$arg = ARGV[2]
+
+$tmpname = SecureRandom.uuid
+Dir.chdir $workdir
+
+def get_mimetype(filename)
+  `xdg-mime query filetype '#{filename}'`.chomp!
+end
+
+def check_extracted_folder(name)
+  children = Dir.children $tmpname
+
+  if children.length == 1
+    childrenpath = File.join $tmpname, children.first
+    FileUtils.mv childrenpath, '.', force: true
+    FileUtils.rmdir $tmpname
+    FileUtils.rmdir name if Dir.empty? name
+  else
+    FileUtils.mv $tmpname, name
+  end
+end
+
+def list_archive
+  mime = get_mimetype $arg
+
+  case mime
+  when 'application/zip'
+    system "unzip -l '#{$arg}'"
+  when 'application/x-rar'
+    system "unrar l '#{$arg}'"
+  when 'application/x-7z-compressed'
+    system "7z l '#{$arg}'"
+  when 'application/x-xz', 'application/x-gz', 'application/x-bz2'
+    system "tar tvf '#{$arg}'"
+  else
+    puts "Cannot list #{$arg} files #{mime}"
+  end
+end
+
+def extract_archive
+  # https://www.cyberciti.biz/faq/howto-extract-tar-file-to-specific-directory-on-unixlinux/
+  name = File.basename $arg, File.extname($arg)
+  mime = get_mimetype $arg
+
+  case mime
+  when 'application/zip'
+    system "unzip -o -d #{$tmpname} '#{$arg}'"
+  when 'application/x-rar'
+    FileUtils.mkdir $tmpname
+    system "unrar x '#{$arg}' #{$tmpname}"
+  when 'application/x-7z-compressed'
+    system "7z x '#{$arg}' -o#{$tmpname}"
+  when 'application/x-xz'
+    FileUtils.mkdir $tmpname
+    system "tar xvf '#{$arg}' -C#{$tmpname}"
+  when 'application/x-gz'
+    FileUtils.mkdir $tmpname
+    system "tar zxvf '#{$arg}' -C#{$tmpname}"
+  when 'application/x-bz2'
+    FileUtils.mkdir $tmpname
+    system "tar jxvf '#{$arg}' -C#{$tmpname}"
+  else
+    puts "Cannot extract #{$arg} files (#{mime})"
+    return
+  end
+
+  check_extracted_folder name
+end
+
+def create_archive
+  items = ARGV[4]
+  ext = File.extname $arg
+
+  puts $arg
+
+  case ext
+  when '.zip'
+    # system "unzip -o -d #{$tmpname} '#{$arg}'"
+  when '.rar'
+    # FileUtils.mkdir $tmpname
+    # system "unrar x '#{$arg}' #{$tmpname}"
+  when '.7z'
+    # system "7z x '#{$arg}' -o#{$tmpname}"
+  when '.xz'
+    # FileUtils.mkdir $tmpname
+    # system "tar xvf '#{$arg}' -C#{$tmpname}"
+  when '.gz'
+    # FileUtils.mkdir $tmpname
+    # system "tar zxvf '#{$arg}' -C#{$tmpname}"
+  when '.bz2'
+    # FileUtils.mkdir $tmpname
+    # system "tar jxvf '#{$arg}' -C#{$tmpname}"
+  else
+    puts "Cannot create archive #{$arg} (#{ext})"
+  end
+end
+
+case $mode
+when 'l'
+  list_archive
+when 'x'
+  extract_archive
+when 'a'
+  create_archive
+else
+  puts "Unknown mode '#{mode}'"
+end
+
+# rubocop:enable Style/GlobalVars

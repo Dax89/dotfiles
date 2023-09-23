@@ -7,7 +7,11 @@ alias grep="grep --color=auto"
 alias dotfiles="/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 # Set Environment Variables
-XDG_CURRENT_DESKTOP=i3
+export QT_QPA_PLATFORMTHEME=qt5ct
+export XDG_SESSION_DESKTOP=i3
+export XDG_CURRENT_DESKTOP=i3
+export TERMINAL=kitty
+
 PATH="$PATH:$HOME/.local/bin" # local binaries
 PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin" # Ruby local binaries
 

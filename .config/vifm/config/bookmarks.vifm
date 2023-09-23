@@ -1,0 +1,5 @@
+" vim: filetype=vim:
+" :mark mark /full/directory/path [filename]
+
+mark t ~/.local/share/Trash/files
+mark h ~/

@@ -1,0 +1,22 @@
+[Default Applications]
+x-scheme-handler/tg=org.telegram.desktop.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-FIQAZ1.desktop
+message/rfc822=userapp-Thunderbird-FIQAZ1.desktop
+x-scheme-handler/mid=userapp-Thunderbird-FIQAZ1.desktop
+video/mp4=mpv.desktop
+text/plain=nvim-qt.desktop
+application/json=nvim-qt.desktop
+application/pdf=firefoxdeveloperedition.desktop
+application/x-ms-dos-executable=wine.desktop
+image/jpeg=feh.desktop
+image/png=feh.desktop
+text/html=firefoxdeveloperedition.desktop
+image/gif=feh.desktop
+inode/directory=vifm.desktop
+
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-NM6CZ1.desktop;org.telegram.desktop.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-FIQAZ1.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-FIQAZ1.desktop;
+video/mp4=baka-mplayer.desktop;
+text/plain=feh.desktop;
