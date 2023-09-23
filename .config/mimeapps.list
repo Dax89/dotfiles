@@ -8,11 +8,24 @@ text/plain=nvim-qt.desktop
 application/json=nvim-qt.desktop
 application/pdf=firefoxdeveloperedition.desktop
 application/x-ms-dos-executable=wine.desktop
-image/jpeg=feh.desktop
-image/png=feh.desktop
+image/jpeg=gpicview.desktop
+image/png=gpicview.desktop
 text/html=firefoxdeveloperedition.desktop
-image/gif=feh.desktop
+image/gif=gpicview.desktop
 inode/directory=vifm.desktop
+image/bmp=gpicview.desktop
+image/jpg=gpicview.desktop
+image/tiff=gpicview.desktop
+image/x-bmp=gpicview.desktop
+image/x-pcx=gpicview.desktop
+image/x-tga=gpicview.desktop
+image/x-portable-pixmap=gpicview.desktop
+image/x-portable-bitmap=gpicview.desktop
+image/x-targa=gpicview.desktop
+image/x-portable-greymap=gpicview.desktop
+application/pcx=gpicview.desktop
+image/svg+xml=gpicview.desktop
+image/svg-xml=gpicview.desktop
 
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-NM6CZ1.desktop;org.telegram.desktop.desktop;

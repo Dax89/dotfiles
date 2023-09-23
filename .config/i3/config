@@ -26,7 +26,8 @@ for_window [class="thunderbird"] floating enable
 for_window [class="SpeedCrunch"] floating enable
 for_window [class="Gnome-screenshot"] floating enable sticky enable
 for_window [class="vlc"] floating enable
-for_window [class="feh"] floating enable
+for_window [class="Nitrogen"] floating enable
+for_window [class="Gpicview"] floating enable
 for_window [class="Vampire_Survivors"] floating enable
 for_window [class="^VirtualBox"] floating enable
 
@@ -52,7 +53,7 @@ bindsym $mod+c exec --no-startup-id "rofi -modi 'Clipboard:greenclip print' -sho
 exec --no-startup-id ~/.me/scripts/darkhttpd.sh --daemon
 
 # Enable Wallpaper
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper.jpg
+exec --no-startup-id nitrogen --restore
 
 # Start Notification Manager
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
