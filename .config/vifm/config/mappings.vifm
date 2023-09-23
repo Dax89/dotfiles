@@ -12,9 +12,6 @@ nnoremap s :shell<cr>
 " Show launch option
 nnoremap ,o :file<cr>
 
-" Print file MIME
-nnoremap ,M :!xdg-mime query filetype %f%S<cr>
-
 " Create new blank file
 nnoremap ,T :touch<space>
 
