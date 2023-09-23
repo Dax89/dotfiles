@@ -53,7 +53,12 @@ filetype
             \ {Extract}
             \ $VIFM/scripts/archive x %"d  %"f,
 
-" Media Files
+" Images
+filextype <image/*>
+            \ {Open in GPicView}
+            \ gpicview %f %i
+
+" Media
 filextype <video/*>,<audio/*>
             \ {Open in VLC}
             \ vlc -q --one-instance %f %i
