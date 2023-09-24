@@ -63,17 +63,15 @@ filextype <video/*>,<audio/*>
             \ {Open in VLC}
             \ vlc -q --one-instance %f %i
 
-" IsoMount
+" Iso
 filetype {*.iso},<application/x-iso9660-image>
             \ {Mount with fuseiso}
             \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
 
-" SshMount
-filetype *.ssh
-            \ {Mount with sshfs}
-            \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR %FOREGROUND,
+" Ssh
+filetype *.ssh FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR
 
-" FtpMount
+" Ftp
 filetype *.ftp
             \ {Mount with curlftpfs}
             \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,

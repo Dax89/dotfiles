@@ -15,7 +15,7 @@ $tmpname = SecureRandom.uuid
 Dir.chdir $workdir
 
 def get_mimetype(filename)
-  `xdg-mime query filetype '#{filename}'`.chomp!
+  `file -b --mime-type '#{filename}'`.chomp!
 end
 
 def check_extracted_folder(name)

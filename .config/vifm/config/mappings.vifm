@@ -15,6 +15,9 @@ nnoremap ,o :file<cr>
 " Create new blank file
 nnoremap ,T :touch<space>
 
+" Extract and Display MIME
+nnoremap ,z :!file -b --mime-type %f%S<cr>
+
 " Create new folder
 nnoremap ,M :mkdir<space>
 
