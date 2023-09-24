@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Categories=Application;Graphics;RasterGraphics;Scanning;GTK;
+Name=Image Scan
+GenericName=Scan Dialog
+Exec=utsushi
+Terminal=false
+Icon=scanner
