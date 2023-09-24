@@ -117,7 +117,7 @@ tiling_drag modifier titlebar
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec --no-startup-id "kitty --single-instance"
 bindsym $mod+Shift+Return exec --no-startup-id "kitty vifm"
-# bindsym $mod+Return exec --no-startup-id "st -e tmux"
+bindsym $mod+Shift+n exec --no-startup-id "nvim-qt"
 
 # mixer
 bindsym $mod+m exec --no-startup-id "rofi -show Mixer -modi 'Mixer:~/.config/rofi/mixer.rb' -theme-str 'mode-switcher { enabled: false; }'"
