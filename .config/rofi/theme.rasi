@@ -1,0 +1,84 @@
+configuration {
+    font: "sans 11";
+
+    drun {
+        display-name: "";
+    }
+
+    run {
+        display-name: "";
+    }
+
+    window {
+        display-name: "";
+    }
+
+    timeout {
+        delay: 10;
+        action: "kb-cancel";
+    }
+}
+
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+
+    bg: #1d1f21;
+    fg: #d8dee9;
+    primary: #5294e2;
+    secondary: #c778dd;
+
+    background-color: @bg;
+    text-color: @fg;
+}
+
+window {
+    width: 650px;
+}
+
+mainbox {
+    children: [inputbar, listview];
+}
+
+inputbar {
+    children: [prompt, entry];
+}
+
+entry {
+    background-color: inherit;
+    padding: 12px 3px;
+}
+
+prompt {
+    background-color: inherit;
+    padding: 12px;
+}
+
+listview {
+    lines: 8;
+}
+
+element {
+    children: [element-icon, element-text];
+}
+
+element-icon {
+    padding: 10px 10px;
+}
+
+element-icon selected,
+element-text selected {
+    background-color: @secondary;
+    text-color: @bg;
+}
+
+element-text {
+    padding: 10px 0;
+}
+
+element-icon active,
+element-text active {
+    text-color: @primary;
+}
