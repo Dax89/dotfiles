@@ -13,13 +13,13 @@ nnoremap s :shell<cr>
 nnoremap ,o :file<cr>
 
 " Create new blank file
-nnoremap ,T :touch<space>
+nnoremap ,t :touch<space>
+
+" Create new folder
+nnoremap ,m :mkdir!<space>
 
 " Extract and Display MIME
 nnoremap ,z :!file -b --mime-type %f%S<cr>
-
-" Create new folder
-nnoremap ,M :mkdir<space>
 
 " Display sorting dialog
 nnoremap S :sort<cr>
@@ -89,15 +89,10 @@ nnoremap A cw
 
 " Open console in current directory
 if $DISPLAY && executable('xterm')
-    nnoremap ,t :!xterm &<cr>
+    nnoremap ,T :!xterm &<cr>
 elseif $TERMINAL
-    nnoremap ,t :!$TERMINAL &<cr>
+    nnoremap ,T :!$TERMINAL &<cr>
 endif
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
 nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
-
-" Open gvim to edit vifmrc
-if $DISPLAY && executable('gvim')
-    nnoremap ,C :!gvim --remote-tab-silent $MYVIFMRC &<cr>
-endif
