@@ -16,8 +16,7 @@ def grab_active_window
 end
 
 def clipboard_copy(filepath)
-  system("xclip -selection clipboard -target image/png -i < #{filepath}")
-  FileUtils.rm(filepath)
+  system("echo 'file://#{filepath}' | xclip -selection clipboard -t text/uri-list")
 end
 
 def notify(title)
@@ -50,7 +49,11 @@ OptionParser.new do |opt|
   opt.on('-c', '--clipboard', 'Copy image to Clipboard') { options[:clipboard] = true }
 end.parse!
 
-filepath = File.join (options[:clipboard] ? Dir.tmpdir : Dir.home), gen_filename
+filepath = if options[:clipboard]
+             File.join Dir.tmpdir, 'screenshot.png'
+           else
+             File.join Dir.home, gen_filename
+           end
 
 case options[:mode]
 when Modes::ACTIVE
