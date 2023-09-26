@@ -1,7 +1,7 @@
 " vim: filetype=vim:
 
 " Toggle select and move down
-nnoremap <space> tj
+nnoremap <TAB> tj
 
 " Toggle select and move up
 nnoremap T tk
@@ -20,6 +20,9 @@ nnoremap ,m :mkdir!<space>
 
 " Extract and Display MIME
 nnoremap ,z :!file -b --mime-type %f%S<cr>
+"
+" Sync current view to other pane
+nnoremap ,s :sync<cr>
 
 " Display sorting dialog
 nnoremap S :sort<cr>
