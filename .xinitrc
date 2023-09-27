@@ -12,6 +12,6 @@ function execute_if() {
     fi
 }
 
-execute_if 'numlockx'
-xset r rate 250 50
+execute_if 'numlockx' &
+xset r rate 250 50 &
 exec i3
