@@ -24,6 +24,9 @@ nnoremap ,z :!file -b --mime-type %f%S<cr>
 " Sync current view to other pane
 nnoremap ,s :sync<cr>
 
+" Enable drag 'n drop
+nnoremap ,d :dragon<CR>
+
 " Display sorting dialog
 nnoremap S :sort<cr>
 

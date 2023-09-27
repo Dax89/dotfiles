@@ -19,6 +19,7 @@
 command! diff vim -d %f %F
 command! run !! ./%f
 command! reload :write | restart full
+command! dragon dragon-drop -a -x %f
 
 command ssh
     \ : let $SSH_FILE = system('mktemp /tmp/XXXX.ssh')
