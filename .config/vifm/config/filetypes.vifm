@@ -42,7 +42,12 @@
 "     filextype * open
 " endif
 
-" Archives
+" Standard
+filetype *.pdf,
+            \{View}
+            \ xdg-open %"f %i
+
+" Archive
 filetype 
             \{*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},<application/zip,application/java-archive>,
             \{*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst},<application/x-tar>
@@ -53,7 +58,7 @@ filetype
             \ {Extract}
             \ $VIFM/scripts/archive x %"d  %"f,
 
-" Images
+" Image
 filextype <image/*>
             \ {Open in GPicView}
             \ gpicview %f %i
@@ -61,7 +66,7 @@ filextype <image/*>
 " Media
 filextype <video/*>,<audio/*>
             \ {Open in VLC}
-            \ vlc -q --one-instance %f %i
+            \ vlc -q --one-instance %"f %i
 
 " Iso
 filetype {*.iso},<application/x-iso9660-image>
