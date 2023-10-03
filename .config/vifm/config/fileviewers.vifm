@@ -38,8 +38,8 @@ fileviewer {*.torrent},<application/x-bittorrent>
 " Archives
 fileviewer 
             \{*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},<application/zip,application/java-archive>,
-            \{*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst},<application/x-tar>
-            \{*.rar},<application/x-rar>
+            \{*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst},<application/x-tar>,
+            \{*.rar},<application/x-rar>,
             \{*.7z},<application/x-7z-compressed>
             \ $VIFM/scripts/archive l %"d  %"f | less,
 

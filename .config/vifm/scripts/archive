@@ -23,12 +23,16 @@ def check_extracted_folder(name)
 
   if children.length == 1
     childrenpath = File.join $tmpname, children.first
-    FileUtils.mv childrenpath, '.', force: true
+    FileUtils.mv childrenpath, Dir.getwd, force: true
     FileUtils.rmdir $tmpname
-    FileUtils.rmdir name if Dir.empty? name
+    FileUtils.rmdir name if Dir.exist?(name) && Dir.empty?(name)
   else
     FileUtils.mv $tmpname, name
   end
+
+  return unless name.end_with? '.tar'
+
+  FileUtils.mv name, name[..-5]
 end
 
 def list_archive
@@ -41,7 +45,8 @@ def list_archive
     system "unrar l '#{$arg}'"
   when 'application/x-7z-compressed'
     system "7z l '#{$arg}'"
-  when 'application/x-xz', 'application/x-gz', 'application/x-bz2'
+  when 'application/x-xz', 'application/x-gz', 'application/x-bz2',
+       'application/gzip', 'application/x-bzip2'
     system "tar tvf '#{$arg}'"
   else
     puts "Cannot list #{$arg} files #{mime}"
@@ -64,10 +69,10 @@ def extract_archive
   when 'application/x-xz'
     FileUtils.mkdir $tmpname
     system "tar xvf '#{$arg}' -C#{$tmpname}"
-  when 'application/x-gz'
+  when 'application/x-gz', 'application/gzip'
     FileUtils.mkdir $tmpname
     system "tar zxvf '#{$arg}' -C#{$tmpname}"
-  when 'application/x-bz2'
+  when 'application/x-bz2', 'application/x-bzip2'
     FileUtils.mkdir $tmpname
     system "tar jxvf '#{$arg}' -C#{$tmpname}"
   else
@@ -79,28 +84,24 @@ def extract_archive
 end
 
 def create_archive
-  items = ARGV[4]
-  ext = File.extname $arg
+  filename = ARGV[3]
+  return if filename.nil? || filename.empty?
 
-  puts $arg
+  ext = File.extname filename
 
   case ext
   when '.zip'
-    # system "unzip -o -d #{$tmpname} '#{$arg}'"
+    system "zip -r #{filename} #{$arg}"
   when '.rar'
-    # FileUtils.mkdir $tmpname
-    # system "unrar x '#{$arg}' #{$tmpname}"
+    system "rar a -r '#{filename}' #{$arg}"
   when '.7z'
-    # system "7z x '#{$arg}' -o#{$tmpname}"
+    system "7z a -r '#{filename}' #{$arg}"
   when '.xz'
-    # FileUtils.mkdir $tmpname
-    # system "tar xvf '#{$arg}' -C#{$tmpname}"
+    system "tar cvfJ '#{filename}' #{$arg}"
   when '.gz'
-    # FileUtils.mkdir $tmpname
-    # system "tar zxvf '#{$arg}' -C#{$tmpname}"
+    system "tar cvfz '#{filename}' #{$arg}"
   when '.bz2'
-    # FileUtils.mkdir $tmpname
-    # system "tar jxvf '#{$arg}' -C#{$tmpname}"
+    system "tar cvfj '#{filename}' #{$arg}"
   else
     puts "Cannot create archive #{$arg} (#{ext})"
   end
@@ -111,7 +112,7 @@ when 'l'
   list_archive
 when 'x'
   extract_archive
-when 'a'
+when 'c'
   create_archive
 else
   puts "Unknown mode '#{mode}'"

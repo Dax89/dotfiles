@@ -16,10 +16,17 @@
 "  %u uses command's output to build a file list
 "  see `:help vifm-macros` and `:help vifm-filename-modifiers` for more
 
-command! diff vim -d %f %F
-command! run !! ./%f
-command! reload :write | restart full
-command! dragon dragon-drop -a -x %f
+command diff vim -d %f %F
+command run !! ./%f
+command reload :write | restart full
+command dragon dragon-drop -a -x %f
+
+            " \ | execute expand('!$VIFM/scripts/archive c %"d "%"f" $ARCHIVE_NAME | less')
+command archive 
+            \ : let $ARCHIVE_NAME = input('Archive Name: ', '')
+            \ | if $ARCHIVE_NAME != ''
+            \ | execute expand('!$VIFM/scripts/archive c %"d ''%"f'' $ARCHIVE_NAME | less')
+            \ | endif
 
 command ssh
     \ : let $SSH_FILE = system('mktemp /tmp/XXXX.ssh')

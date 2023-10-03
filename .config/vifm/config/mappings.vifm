@@ -7,10 +7,10 @@ nnoremap <TAB> tj
 nnoremap T tk
 
 " Start shell in current directory
-nnoremap s :shell<cr>
+nnoremap s :shell<CR>
 
 " Show launch option
-nnoremap ,o :file<cr>
+nnoremap ,o :file<CR>
 
 " Create new blank file
 nnoremap ,t :touch<space>
@@ -18,75 +18,76 @@ nnoremap ,t :touch<space>
 " Create new folder
 nnoremap ,m :mkdir!<space>
 
-" Extract and Display MIME
-nnoremap ,z :!file -b --mime-type %f%S<cr>
+" Create archive
+nnoremap ,z :archive<CR>
+
+" Show MIME
+nnoremap ,x :!file -b --mime-type %f%S<CR>
 "
 " Sync current view to other pane
-nnoremap ,s :sync<cr>
+nnoremap ,s :sync<CR>
 
 " Enable drag 'n drop
 nnoremap ,d :dragon<CR>
 
 " Display sorting dialog
-nnoremap S :sort<cr>
+nnoremap S :sort<CR>
 
 " Toggle visibility of preview window
-nnoremap w :view<cr>
-vnoremap w :view<cr>gv
+nnoremap w :view<CR>
+vnoremap w :view<CR>gv
 
-if $DISPLAY && executable('gvim')
-    " Open file in existing instance of gvim
-    nnoremap o :!gvim --remote-tab-silent %f<cr>
-    " Open file in new instance of gvim
-    nnoremap O :!gvim %f<cr>
+if $DISPLAY && executable('nvim-qt')
+    " Open file in new instance of nvim-qt
+    nnoremap O :!nvim-qt %f<CR>
 endif
 
 " Open file in the background using its default program
-nnoremap gb :file &<cr>l
+nnoremap gb :file &<CR>l
 
 " Interaction with system clipboard
 if has('win')
     " Yank current directory path to Windows clipboard with forward slashes
-    nnoremap yp :!echo %"d:gs!\!/! %i | clip<cr>
+    nnoremap yp :!echo %"d:gs!\!/! %i | clip<CR>
     " Yank path to current file to Windows clipboard with forward slashes
-    nnoremap yf :!echo %"c:gs!\!/! %i | clip<cr>
+    nnoremap yf :!echo %"c:gs!\!/! %i | clip<CR>
 elseif $WAYLAND_DISPLAY
     if executable('wl-copy')
         " Yank current directory path into primary and selection clipboards
         nnoremap yd :!echo -n %d | wl-copy %i &&
-                    \ echo -n %d | wl-copy -p %i<cr>
+                    \ echo -n %d | wl-copy -p %i<CR>
         " Yank current file path into into primary and selection clipboards
         nnoremap yf :!echo -n %c:p | wl-copy %i &&
-                    \ echo -n %c:p | wl-copy -p %i<cr>
+                    \ echo -n %c:p | wl-copy -p %i<CR>
     endif
 elseif $DISPLAY
     if executable('xclip')
         " Yank current directory path into the clipboard
-        nnoremap yd :!echo %d | xclip %i<cr>
+        nnoremap yd :!echo %d | xclip %i<CR>
         " Yank current file path into the clipboard
-        nnoremap yf :!echo %c:p | xclip %i<cr>
+        nnoremap yf :!echo %c:p | xclip %i<CR>
     elseif executable('xsel')
         " Yank current directory path into primary and selection clipboards
         nnoremap yd :!echo -n %d | xsel --input --primary %i &&
-                    \ echo -n %d | xsel --clipboard --input %i<cr>
+                    \ echo -n %d | xsel --clipboard --input %i<CR>
         " Yank current file path into into primary and selection clipboards
         nnoremap yf :!echo -n %c:p | xsel --input --primary %i &&
-                    \ echo -n %c:p | xsel --clipboard --input %i<cr>
+                    \ echo -n %c:p | xsel --clipboard --input %i<CR>
     endif
 endif
 
 " Create new tab
-nnoremap <C-t> :tabnew<cr>
+nnoremap <C-t> :tabnew<CR>
 
 " Close tab
-nnoremap <C-d> :q!<cr>
+nnoremap <C-d> :q!<CR>
 
-nnoremap <C-h> :tabprevious<cr>:view!<cr>
+nnoremap <C-h> :tabprevious<CR>:view!<CR>
 
 " Switch to tab to the right
-nnoremap <C-l> :tabnext<cr>:view!<cr>
+nnoremap <C-l> :tabnext<CR>:view!<CR>
 
-nnoremap ,y :!$VIFM/scripts/clipcopy '%"f' '%d'%S<cr>
+nnoremap ,y :!$VIFM/scripts/clipcopy '%"f' '%d'%S<CR>
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>
@@ -95,10 +96,10 @@ nnoremap A cw
 
 " Open console in current directory
 if $DISPLAY && executable('xterm')
-    nnoremap ,T :!xterm &<cr>
+    nnoremap ,T :!xterm &<CR>
 elseif $TERMINAL
-    nnoremap ,T :!$TERMINAL &<cr>
+    nnoremap ,T :!$TERMINAL &<CR>
 endif
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
-nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
+nnoremap ,c :write | edit $MYVIFMRC | restart full<CR>
