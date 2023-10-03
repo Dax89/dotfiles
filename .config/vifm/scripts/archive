@@ -6,13 +6,43 @@
 
 require 'securerandom'
 require 'fileutils'
+require 'optparse'
 
-$mode = ARGV[0]
-$workdir = ARGV[1]
-$arg = ARGV[2]
+class Modes
+  LIST    = 0
+  EXTRACT = 1
+  CREATE  = 2
+end
+
+$options = {}
+
+optionparser = OptionParser.new do |opt|
+  opt.on('-w', '--workdir WORKDIR', 'Working dir') { |x| $options[:workdir] = x }
+  opt.on('-o', '--output FILENAME', 'Output filename (optional)') { |x| $options[:filename] = x }
+  opt.on('-p', '--password PASSWORD', 'Archive Password (optional)') { |x| $options[:password] = x }
+
+  opt.on('-m', '--mode MODE', 'Mode (l=list, x=extract, c=create)') do |mode|
+    $options[:mode] = case mode
+                      when 'l'
+                        Modes::LIST
+                      when 'x'
+                        Modes::EXTRACT
+                      when 'c'
+                        Modes::CREATE
+                      end
+  end
+end
+
+optionparser.parse!
+
+raise OptionParser::MissingArgument if ARGV.empty?
+raise OptionParser::InvalidArgument if $options[:mode].nil?
+raise OptionParser::MissingArgument if $options[:workdir].nil?
+
+$arg = ARGV[0]
 
 $tmpname = SecureRandom.uuid
-Dir.chdir $workdir
+Dir.chdir $options[:workdir]
 
 def get_mimetype(filename)
   `file -b --mime-type '#{filename}'`.chomp!
@@ -49,7 +79,7 @@ def list_archive
        'application/gzip', 'application/x-bzip2'
     system "tar tvf '#{$arg}'"
   else
-    puts "Cannot list #{$arg} files #{mime}"
+    raise "Cannot list #{$arg} files #{mime}"
   end
 end
 
@@ -76,46 +106,53 @@ def extract_archive
     FileUtils.mkdir $tmpname
     system "tar jxvf '#{$arg}' -C#{$tmpname}"
   else
-    puts "Cannot extract #{$arg} files (#{mime})"
-    return
+    raise "Cannot extract #{$arg} files (#{mime})"
   end
 
   check_extracted_folder name
 end
 
 def create_archive
-  filename = ARGV[3]
-  return if filename.nil? || filename.empty?
+  filename = $options[:filename]
+  raise OptionParser::MissingArgument if filename.nil? || filename.empty?
 
+  password = $options[:password]
   ext = File.extname filename
 
   case ext
   when '.zip'
-    system "zip -r #{filename} #{$arg}"
+    password = "-P #{password}" unless password.nil?
+    system "zip -r #{password} #{filename} #{$arg}"
   when '.rar'
-    system "rar a -r '#{filename}' #{$arg}"
+    password = "-hp#{password}" unless password.nil?
+    system "rar #{password} a -r '#{filename}' #{$arg}"
   when '.7z'
-    system "7z a -r '#{filename}' #{$arg}"
+    password = "-P#{password}" unless password.nil?
+    system "7z #{password} a -r '#{filename}' #{$arg}"
   when '.xz'
+    raise '.tar.xz archive doesn\'t support passwords' unless password.nil?
+
     system "tar cvfJ '#{filename}' #{$arg}"
   when '.gz'
+    raise '.tar.gz archive doesn\'t support passwords' unless password.nil?
+
     system "tar cvfz '#{filename}' #{$arg}"
   when '.bz2'
+    raise '.tar.bz2 archive doesn\'t support passwords' unless password.nil?
+
     system "tar cvfj '#{filename}' #{$arg}"
   else
-    puts "Cannot create archive #{$arg} (#{ext})"
+    raise "Cannot create archive #{$arg} (#{ext})"
   end
 end
 
-case $mode
-when 'l'
+case $options[:mode]
+when Modes::LIST
   list_archive
-when 'x'
+when Modes::EXTRACT
   extract_archive
-when 'c'
+when Modes::CREATE
   create_archive
-else
-  puts "Unknown mode '#{mode}'"
 end
 
 # rubocop:enable Style/GlobalVars

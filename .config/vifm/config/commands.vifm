@@ -21,11 +21,12 @@ command run !! ./%f
 command reload :write | restart full
 command dragon dragon-drop -a -x %f
 
-            " \ | execute expand('!$VIFM/scripts/archive c %"d "%"f" $ARCHIVE_NAME | less')
-command archive 
-            \ : let $ARCHIVE_NAME = input('Archive Name: ', '')
-            \ | if $ARCHIVE_NAME != ''
-            \ | execute expand('!$VIFM/scripts/archive c %"d ''%"f'' $ARCHIVE_NAME | less')
+command archive :execute expand('!$VIFM/scripts/archive -m c -w %"d -o ''%a'' ''%"f'' | less')
+
+command archive!
+            \ : let $PASS = input('Password: ', '')
+            \ | if $PASS != ''
+            \ | execute expand('!$VIFM/scripts/archive -m c -w %"d -p $PASS -o ''%a'' ''%"f'' | less')
             \ | endif
 
 command ssh

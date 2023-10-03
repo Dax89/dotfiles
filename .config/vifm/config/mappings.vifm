@@ -19,7 +19,10 @@ nnoremap ,t :touch<space>
 nnoremap ,m :mkdir!<space>
 
 " Create archive
-nnoremap ,z :archive<CR>
+nnoremap ,z :archive<space>
+
+" Create archive
+nnoremap ,Z :archive!<space>
 
 " Show MIME
 nnoremap ,x :!file -b --mime-type %f%S<CR>
