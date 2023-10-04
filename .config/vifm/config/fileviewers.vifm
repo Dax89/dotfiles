@@ -1,6 +1,6 @@
 " vim: filetype=vim:
 
-" :fileviewer pattern1,pattern2 consoleviewe
+" :fileviewer pattern1,pattern2 consoleviewer
 
 " Pdf
 fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
@@ -37,14 +37,17 @@ fileviewer {*.torrent},<application/x-bittorrent>
 
 " Archives
 fileviewer 
-            \{*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},<application/zip,application/java-archive>,
-            \{*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst},<application/x-tar>,
-            \{*.rar},<application/x-rar>,
-            \{*.7z},<application/x-7z-compressed>
-            \ $VIFM/scripts/archive -m l -w %"d %"f | less,
+            \{*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg}
+            \{*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst},
+            \{*.rar},{*.7z},
+            \<application/java-archive>,<application/zip>,<application/x-rar>,
+            \<application/x-xz>,<application/x-gz>,<application/x-7z-compressed>,
+            \<application/x-tar>,<application/x-bz2>,<application/gzip>,<application/bzip2>
+            \ $VIFM/scripts/archive -m l -w %"d %"f | less
 
 " Office files
 fileviewer {*.doc},<application/msword> catdoc %c
+
 fileviewer {*.docx},
             \<application/
             \vnd.openxmlformats-officedocument.wordprocessingml.document>
