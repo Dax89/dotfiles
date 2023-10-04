@@ -23,6 +23,7 @@ for_window [class="discord"] floating enable
 for_window [class="thunderbird"] floating enable
 for_window [class="SpeedCrunch"] floating enable
 for_window [class="vlc"] floating enable
+for_window [class="irb"] floating enable
 for_window [class="Zenity"] floating enable
 for_window [class="Nitrogen"] floating enable
 for_window [class="Gpicview"] floating enable
@@ -120,9 +121,10 @@ tiling_drag modifier titlebar
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec --no-startup-id "kitty --single-instance"
-bindsym $mod+Shift+Return exec --no-startup-id "kitty vifm"
+bindsym $mod+Shift+i exec --no-startup-id "kitty --class=irb irb"
 bindsym $mod+Shift+n exec --no-startup-id "nvim-qt"
 bindsym $mod+Shift+b exec --no-startup-id "brave"
+bindsym $mod+Shift+Return exec --no-startup-id "kitty vifm"
 
 # mixer
 bindsym $mod+m exec --no-startup-id "rofi -show Mixer -modi 'Mixer:~/.config/rofi/mixer.rb' -theme-str 'mode-switcher { enabled: false; }'"
