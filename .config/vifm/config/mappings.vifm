@@ -1,7 +1,12 @@
+"
 " vim: filetype=vim:
+"
+
+" Move between panes
+nnoremap <tab> <C-w>w
 
 " Toggle select and move down
-nnoremap <TAB> tj
+nnoremap <space> tj
 
 " Toggle select and move up
 nnoremap T tk
