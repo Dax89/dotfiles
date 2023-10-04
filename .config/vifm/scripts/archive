@@ -2,7 +2,7 @@
 # rubocop:disable Style/GlobalVars
 
 # Supported Extensions:
-# zip, rar, 7z, tar.xz, tar.gz, tar.bz2
+# zip, rar, 7z, tar, tar.xz, tar.gz, tar.bz2
 
 require 'securerandom'
 require 'fileutils'
@@ -75,8 +75,8 @@ def list_archive
     system "unrar l '#{$arg}'"
   when 'application/x-7z-compressed'
     system "7z l '#{$arg}'"
-  when 'application/x-xz', 'application/x-gz', 'application/x-bz2',
-       'application/gzip', 'application/x-bzip2'
+  when 'application/x-tar', 'application/x-xz', 'application/x-gz',
+       'application/x-bz2', 'application/gzip', 'application/x-bzip2'
     system "tar tvf '#{$arg}'"
   else
     raise "Cannot list #{$arg} files #{mime}"
@@ -96,7 +96,7 @@ def extract_archive
     system "unrar x '#{$arg}' #{$tmpname}"
   when 'application/x-7z-compressed'
     system "7z x '#{$arg}' -o#{$tmpname}"
-  when 'application/x-xz'
+  when 'application/x-tar', 'application/x-xz'
     FileUtils.mkdir $tmpname
     system "tar xvf '#{$arg}' -C#{$tmpname}"
   when 'application/x-gz', 'application/gzip'
@@ -129,6 +129,10 @@ def create_archive
   when '.7z'
     password = "-P#{password}" unless password.nil?
     system "7z #{password} a -r '#{filename}' #{$arg}"
+  when '.tar'
+    raise '.tar archive doesn\'t support passwords' unless password.nil?
+
+    system "tar cvf '#{filename}' #{$arg}"
   when '.xz'
     raise '.tar.xz archive doesn\'t support passwords' unless password.nil?
 
