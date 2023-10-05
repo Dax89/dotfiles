@@ -9,7 +9,7 @@ def open_file_manager(uri, select: false)
 
   path = uri
   path = path[7..] if path.start_with? 'file://'
-  args.append path
+  args.append "'#{path}'"
 
   system "#{args.join(' ')}&"
 end
