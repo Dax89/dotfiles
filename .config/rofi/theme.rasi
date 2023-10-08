@@ -1,5 +1,5 @@
 configuration {
-    font: "sans 11";
+    font: "monospace 10";
 
     drun {
         display-name: "";
@@ -35,7 +35,7 @@ configuration {
 }
 
 window {
-    width: 600px;
+    width: 670px;
 }
 
 mainbox {
