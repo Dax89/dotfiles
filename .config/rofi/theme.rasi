@@ -35,7 +35,7 @@ configuration {
 }
 
 window {
-    width: 650px;
+    width: 600px;
 }
 
 mainbox {
@@ -65,7 +65,7 @@ element {
 }
 
 element-icon {
-    padding: 10px 10px;
+    padding: 4px 10px;
 }
 
 element-icon selected,
@@ -75,7 +75,7 @@ element-text selected {
 }
 
 element-text {
-    padding: 10px 0;
+    padding: 4px 0;
 }
 
 element-icon active,
