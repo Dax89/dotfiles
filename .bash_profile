@@ -19,14 +19,12 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+# Configure Flatpak
+# XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share/applications:$XDG_DATA_DIRS"
+# XDG_DATA_DIRS="/var/lib/flatpak/exports/share/applications:$XDG_DATA_DIRS"
+
 # Configure Misc
 export UNISON="$XDG_DATA_HOME/unison"
-export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
-export GNUPGHOME="$XDG_DATA_HOME/.gnupg"
-
-# Configure Flatpak
-XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share/applications:$XDG_DATA_DIRS"
-XDG_DATA_DIRS="/var/lib/flatpak/exports/share/applications:$XDG_DATA_DIRS"
 
 # Update PATH variable
 PATH="$PATH:$HOME/.local/bin" # local binaries
