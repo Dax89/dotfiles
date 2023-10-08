@@ -29,7 +29,8 @@ def headphone?
 end
 
 def bluetooth?
-  BLUETOOTH_DRIVERS.include? $sinks[$device]['properties']['alsa.driver_name']
+  $sinks[$device]['properties']['device.bus'] == 'bluetooth' ||
+    BLUETOOTH_DRIVERS.include?($sinks[$device]['properties']['alsa.driver_name'])
 end
 
 def muted?
