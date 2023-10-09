@@ -15,26 +15,10 @@ unless ARGV.empty?
   exit
 end
 
-def headphone?
-  return false if $sinks[$device].nil?
-
-  h = false
-
-  $sinks[$device]['ports'].each do |x|
-    if x['type'] == 'Headphones'
-      h = true
-      break
-    end
-  end
-
-  h
-end
-
 def bluetooth?
   return false if $sinks[$device].nil?
 
-  $sinks[$device]['properties']['device.bus'] == 'bluetooth' ||
-    BLUETOOTH_DRIVERS.include?($sinks[$device]['properties']['alsa.driver_name'])
+  $sinks[$device]['properties']['device.bus'] == 'bluetooth'
 end
 
 def muted?
@@ -43,11 +27,16 @@ def muted?
   $sinks[$device]['mute']
 end
 
+def name
+  current = $sinks[$device]
+  return '' if current.nil?
+
+  "%{T4}%{F#dfae68}#{current['properties']['alsa.name']}%{F-}%{T-}"
+end
+
 def icon
   if bluetooth?
     muted? ? '%{F#dfae68}%{T2}󰗿%{T-}%{F-}' : '%{F#6699cc}%{T2}󰗾%{T-}%{F-}'
-  elsif headphone?
-    muted? ? '%{F#dfae68}%{T2}󰟎%{T-}%{F-}' : '%{F#6699cc}%{T2}󰋋%{T-}%{F-}'
   else
     muted? ? '%{F#dfae68}%{T2}󰖁%{T-}%{F-}' : '%{F#6699cc}%{T2}󱄡%{T-}%{F-}'
   end
@@ -78,7 +67,6 @@ def current_sinks
   end
 end
 
-BLUETOOTH_DRIVERS = ['xone_gip_headset'].freeze
 $stdout.sync = true
 
 $device = current_device
@@ -90,15 +78,15 @@ def device_changed
 
   $device = currdevice
   $sinks = current_sinks
-  puts "#{icon} #{volume}"
+  puts "#{icon} #{volume} #{name}"
 end
 
 def device_updated
   $sinks = current_sinks
-  puts "#{icon} #{volume}"
+  puts "#{icon} #{volume} #{name}"
 end
 
-puts "#{icon} #{volume}"
+puts "#{icon} #{volume} #{name}"
 
 IO.popen('pactl subscribe').each_line do |x|
   m = /Event 'change' on (server|sink) #[0-9]+/.match(x)

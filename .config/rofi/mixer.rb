@@ -8,8 +8,8 @@ def print_entries(entries, selentry, icon, type, index)
   entries.each do |entry|
     info = {
       type: type,
-      name: entry['name'],
-      description: entry['description'],
+      id: entry['name'],
+      name: entry['description'],
       icon: icon
     }
 
@@ -25,7 +25,7 @@ def print_entries(entries, selentry, icon, type, index)
                "#{maxvol}%"
              end
 
-    print "#{entry['description']} - #{volume}\0icon\x1f#{icon}\x1finfo\x1f#{info.to_json}"
+    print "#{info[:name]} - #{volume}\0icon\x1f#{icon}\x1finfo\x1f#{info.to_json}"
 
     if entry['name'] == selentry
       idx = index
@@ -54,12 +54,12 @@ choice = ENV['ROFI_RETV']
 
 if choice == '1'
   info = JSON.parse ENV['ROFI_INFO']
-  system "pactl set-default-#{info['type']} #{info['name']}"
+  system "pactl set-default-#{info['type']} #{info['id']}"
 
   if info['type'] == 'sink'
-    system "dunstify Output \'#{info['description']}\' -i #{info['icon']} -r 2000 -u low"
+    system "dunstify Output \'#{info['name']}\' -i #{info['icon']} -r 2000 -u low"
   else
-    system "dunstify Input \'#{info['description']}\' -i #{info['icon']} -u low -r 2000 "
+    system "dunstify Input \'#{info['name']}\' -i #{info['icon']} -u low -r 2000 "
   end
 end
 
