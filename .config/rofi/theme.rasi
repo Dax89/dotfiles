@@ -25,10 +25,10 @@ configuration {
     padding: 0;
     spacing: 0;
 
-    bg: #1d1f21;
-    fg: #d8dee9;
-    primary: #5294e2;
-    secondary: #c778dd;
+    bg: #28282b;
+    fg: #efefef;
+    primary: #6699cc;
+    secondary: #ad8ee6;
 
     background-color: @bg;
     text-color: @fg;
@@ -70,7 +70,7 @@ element-icon {
 
 element-icon selected,
 element-text selected {
-    background-color: @secondary;
+    background-color: @primary;
     text-color: @bg;
 }
 
@@ -80,5 +80,5 @@ element-text {
 
 element-icon active,
 element-text active {
-    text-color: @primary;
+    text-color: @secondary;
 }
