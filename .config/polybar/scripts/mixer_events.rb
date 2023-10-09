@@ -31,7 +31,10 @@ def name
   current = $sinks[$device]
   return '' if current.nil?
 
-  "%{T4}%{F#dfae68}#{current['properties']['alsa.name']}%{F-}%{T-}"
+  name = current['properties']['alsa.name']
+  name = current['description'] if name.nil?
+
+  "%{T4}%{F#dfae68}#{name}%{F-}%{T-}"
 end
 
 def icon
