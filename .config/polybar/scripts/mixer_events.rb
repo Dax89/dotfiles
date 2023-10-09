@@ -16,6 +16,8 @@ unless ARGV.empty?
 end
 
 def headphone?
+  return false if $sinks[$device].nil?
+
   h = false
 
   $sinks[$device]['ports'].each do |x|
@@ -29,11 +31,15 @@ def headphone?
 end
 
 def bluetooth?
+  return false if $sinks[$device].nil?
+
   $sinks[$device]['properties']['device.bus'] == 'bluetooth' ||
     BLUETOOTH_DRIVERS.include?($sinks[$device]['properties']['alsa.driver_name'])
 end
 
 def muted?
+  return false if $sinks[$device].nil?
+
   $sinks[$device]['mute']
 end
 
@@ -49,6 +55,8 @@ end
 
 def volume
   current = $sinks[$device]
+  return '' if current.nil?
+
   volume = '???'
 
   unless current['volume'].nil?
