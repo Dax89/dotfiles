@@ -39,11 +39,11 @@ end
 
 def icon
   if bluetooth?
-    muted? ? '%{F#e5c07a}%{T2}󰗿%{T-}%{F-}' : '%{F#5294e2}%{T2}󰗾%{T-}%{F-}'
+    muted? ? '%{F#dfae68}%{T2}󰗿%{T-}%{F-}' : '%{F#6699cc}%{T2}󰗾%{T-}%{F-}'
   elsif headphone?
-    muted? ? '%{F#e5c07a}%{T2}󰟎%{T-}%{F-}' : '%{F#5294e2}%{T2}󰋋%{T-}%{F-}'
+    muted? ? '%{F#dfae68}%{T2}󰟎%{T-}%{F-}' : '%{F#6699cc}%{T2}󰋋%{T-}%{F-}'
   else
-    muted? ? '%{F#e5c07a}%{T2}󰖁%{T-}%{F-}' : '%{F#5294e2}%{T2}󱄡%{T-}%{F-}'
+    muted? ? '%{F#dfae68}%{T2}󰖁%{T-}%{F-}' : '%{F#6699cc}%{T2}󱄡%{T-}%{F-}'
   end
 end
 

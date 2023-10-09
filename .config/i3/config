@@ -295,9 +295,17 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-client.focused_inactive  #394c81 #394c81 #d8dee9 #5294e2 #394c81
-client.unfocused         #1d1f21 #394c81 #d8dee9 #5294e2 #394c81
-client.focused           #c778dd #c778dd #1d1f21 #5294e2 #c778dd
-client.urgent            #e86b74 #e86b74 #1d1f21 #5294e2 #e86b74
-client.placeholder       #1d1f21 #1d1f21 #d8dee9 #1d1f21 #1d1f21
-client.background        #d8dee9
+# Color Scheme
+set $background #2f343f
+set $foreground #efefef
+set $primary    #6699CC
+set $urgent     #f7768e
+set $focused    #dfae68
+
+# class                 border      background  text        indicator   child_border
+client.focused          $primary    $primary    $background $primary    $primary
+client.focused_inactive $focused    $focused    $background $focused    $focused
+client.unfocused        $background $background $foreground $background $background
+client.urgent           $urgent     $urgent     $background $urgent     $urgent
+client.placeholder      $primary    $primary    $background $primary    $primary
+client.background       $background
