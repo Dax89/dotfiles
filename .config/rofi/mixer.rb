@@ -46,6 +46,7 @@ def show_audio
   selsource = `pactl get-default-source`.chomp
 
   sinkres = print_entries sinks, selsink, 'audio-volume-high-symbolic', 'sink', 0
+  puts "\0nonselectable\x1ftrue"
   sourceres = print_entries sources, selsource, 'microphone-sensitivity-high-symbolic', 'source', sinkres[1]
   puts "\0active\x1f#{sinkres[0]},#{sourceres[0]}"
 end
