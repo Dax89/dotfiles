@@ -39,7 +39,7 @@ window {
 }
 
 mainbox {
-    children: [inputbar, listview];
+    children: [inputbar, message, listview];
 }
 
 inputbar {
@@ -49,6 +49,11 @@ inputbar {
 entry {
     background-color: inherit;
     padding: 12px 3px;
+}
+
+message {
+    background-color: inherit;
+    padding: 6px 6px;
 }
 
 prompt {
