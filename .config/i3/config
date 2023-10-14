@@ -30,6 +30,7 @@ for_window [class="Gpicview"] floating enable
 for_window [class="Vampire_Survivors"] floating enable
 for_window [class="^VirtualBox"] floating enable
 for_window [class="^steam"] floating enable
+for_window [class="^Blueman"] floating enable
 for_window [all] title_window_icon padding 3px
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -45,6 +46,9 @@ exec --no-startup-id ~/.me/scripts/org.vifm.FileManager1.rb
 
 # Device Manager
 exec --no-startup-id udiskie --no-automount --tray
+
+# Bluetooth Manager
+exec --no-startup-id blueman-applet
 
 # Clipboard Tool
 exec --no-startup-id greenclip daemon > /dev/null
