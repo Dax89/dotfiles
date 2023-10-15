@@ -26,7 +26,7 @@ nnoremap ,m :mkdir!<space>
 " Create archive
 nnoremap ,z :archive<space>
 
-" Create archive
+" Create archive with password
 nnoremap ,Z :archive!<space>
 
 " Show MIME
