@@ -1,5 +1,8 @@
 " vim: filetype=vim:
 
+" Customize columns
+set viewcolumns="-{name}..,7{size},2{#},-10{mtime}..."
+
 " Disable WordWrap
 set nowrap
 
