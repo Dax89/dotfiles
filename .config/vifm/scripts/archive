@@ -77,7 +77,7 @@ def list_archive
     system "7z l '#{$arg}'"
   when 'application/x-tar', 'application/x-xz', 'application/x-gz',
        'application/x-bz2', 'application/gzip', 'application/x-bzip2'
-    system "tar tf '#{$arg}' | tree --fromfile -C"
+    system "tar tf '#{$arg}' | tree --fromfile -C --dirsfirst"
   else
     raise "Cannot list #{$arg} files #{mime}"
   end
