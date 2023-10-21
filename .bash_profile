@@ -6,7 +6,7 @@ alias ls="ls --color=auto"
 alias tree="tree -C"
 alias grep="grep --color=auto"
 alias dotfiles="/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-alias catimg="kitten icat"
+alias icat="kitten icat"
 
 # Set Environment Variables
 export QT_QPA_PLATFORMTHEME=qt5ct
