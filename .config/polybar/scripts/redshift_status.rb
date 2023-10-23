@@ -21,14 +21,14 @@ def read_period
   m = /Period: ([a-zA-Z]+)/.match out
 
   if m.nil? || !periods.key?(m[1])
-    '%{F#f7768e}%{F-}'
+    '%{F#efefef}%{F-}'
   else
     periods[m[1]]
   end
 end
 
 if find_pid.nil?
-  puts '%{F#efefef}%{T2}%{T-}%{F-}'
+  puts '%{F#9ece6a}%{T2}󰔎%{T-}%{F-}'
 else
   puts "%{T2}#{read_period}%{T-}"
 end
