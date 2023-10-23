@@ -12,7 +12,7 @@ end
 
 def grab_active_window
   activewin = `xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)"`
-  activewin.match(/window id # (.+)/)[1]
+  activewin.match(/window id # (.+)/)[1].to_i 16
 end
 
 def clipboard_copy(filepath)
@@ -57,11 +57,11 @@ filepath = if options[:clipboard]
 
 case options[:mode]
 when Modes::ACTIVE
-  system("import -window #{grab_active_window} #{filepath}")
+  system("maim --window #{grab_active_window} #{filepath}")
 when Modes::SELECTION
-  system("import #{filepath}")
+  system("maim --select #{filepath}")
 else
-  system("import -window root #{filepath}")
+  system("maim #{filepath}")
 end
 
 if options[:clipboard]
