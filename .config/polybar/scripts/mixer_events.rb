@@ -34,7 +34,7 @@ def name
   name = current['properties']['alsa.name']
   name = current['description'] if name.nil?
 
-  "%{T4}%{F#dfae68}#{name}%{F-}%{T-}"
+  "%{T4}%{F#9ece6a}#{name}%{F-}%{T-}"
 end
 
 def icon
@@ -81,15 +81,15 @@ def device_changed
 
   $device = currdevice
   $sinks = current_sinks
-  puts "#{icon} #{volume} #{name}"
+  puts " #{icon} #{volume} #{name} "
 end
 
 def device_updated
   $sinks = current_sinks
-  puts "#{icon} #{volume} #{name}"
+  puts " #{icon} #{volume} #{name} "
 end
 
-puts "#{icon} #{volume} #{name}"
+puts " #{icon} #{volume} #{name} "
 
 IO.popen('pactl subscribe').each_line do |x|
   m = /Event 'change' on (server|sink) #[0-9]+/.match(x)
