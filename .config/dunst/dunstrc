@@ -36,7 +36,6 @@
     hide_duplicate_count = false
     show_indicators = yes
     enable_recursive_icon_lookup = true
-
     icon_theme = "Papirus-Dark, Adwaita"
     icon_position = left
     min_icon_size = 32
@@ -63,20 +62,17 @@
 [urgency_low]
     foreground = "#efefef"
     background = "#28282b"
-    highlight = "#9ece6a"
-    timeout = 5
+    timeout = 3
 
 [urgency_normal]
     foreground = "#efefef"
     background = "#28282b"
-    highlight = "#ad8ee6"
     timeout = 5
 
 [urgency_critical]
     foreground = "#efefef"
     background = "#28282b"
-    highlight = "#f7768e"
-    timeout = 0
+    timeout = 10
 
 [stack-volumes]
     appname = "i3-volume"
