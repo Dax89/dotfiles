@@ -62,16 +62,19 @@
 [urgency_low]
     foreground = "#efefef"
     background = "#28282b"
+    highlight = "#9ece6a"
     timeout = 3
 
 [urgency_normal]
     foreground = "#efefef"
     background = "#28282b"
+    highlight = "#ad8ee6"
     timeout = 5
 
 [urgency_critical]
     foreground = "#efefef"
     background = "#28282b"
+    highlight = "#f7768e"
     timeout = 10
 
 [stack-volumes]
