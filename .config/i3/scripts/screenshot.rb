@@ -65,7 +65,7 @@ success = case options[:mode]
           end
 
 unless success
-  notify 'Screenshot Aborted'
+  notify 'Screenshot cancelled'
   exit 0
 end
 
