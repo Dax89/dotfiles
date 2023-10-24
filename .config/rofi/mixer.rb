@@ -48,7 +48,7 @@ def show_audio
   sinkres = print_entries sinks, selsink, 'audio-volume-high-symbolic', 'sink', 0
   puts "\0nonselectable\x1ftrue"
   sourceres = print_entries sources, selsource, 'microphone-sensitivity-high-symbolic', 'source', sinkres[1]
-  puts "\0active\x1f#{sinkres[0]},#{sourceres[0]}"
+  puts "\0active\x1f#{sinkres[0]},#{sourceres[0] + 1}"
 end
 
 choice = ENV['ROFI_RETV']
@@ -56,11 +56,18 @@ choice = ENV['ROFI_RETV']
 if choice == '1'
   info = JSON.parse ENV['ROFI_INFO']
   system "pactl set-default-#{info['type']} #{info['id']}"
+  current = `pactl get-default-#{info['type']}`.chomp
 
   if info['type'] == 'sink'
-    system "dunstify Output \'#{info['name']}\' -i #{info['icon']} -r 2000 -u low"
+    if info['id'] == current
+      system "dunstify Output \'#{info['name']}\' -i #{info['icon']} -r 2000 -u low"
+    else
+      system "dunstify Output \'Output change failed\' -i #{info['icon']} -r 2000 -u critical"
+    end
+  elsif info['id'] == current
+    system "dunstify Input \'#{info['name']}\' -i #{info['icon']} -r 2000 -u low"
   else
-    system "dunstify Input \'#{info['name']}\' -i #{info['icon']} -u low -r 2000 "
+    system "dunstify Input \'Input change failed\' -i #{info['icon']} -r 2000 -u critical"
   end
 end
 
