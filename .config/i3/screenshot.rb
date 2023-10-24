@@ -55,13 +55,18 @@ filepath = if options[:clipboard]
              File.join Dir.home, gen_filename
            end
 
-case options[:mode]
-when Modes::ACTIVE
-  system("maim --window #{grab_active_window} #{filepath}")
-when Modes::SELECTION
-  system("maim --select #{filepath}")
-else
-  system("maim #{filepath}")
+success = case options[:mode]
+          when Modes::ACTIVE
+            system("maim --window #{grab_active_window} #{filepath}")
+          when Modes::SELECTION
+            system("maim --select #{filepath}")
+          else
+            system("maim #{filepath}")
+          end
+
+unless success
+  notify 'Screenshot Aborted'
+  exit 0
 end
 
 if options[:clipboard]
