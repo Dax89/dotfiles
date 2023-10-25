@@ -17,7 +17,6 @@ tiling_drag modifier titlebar
 for_window [class="TelegramDesktop"] floating enable
 for_window [class="discord"] floating enable
 for_window [class="thunderbird"] floating enable
-for_window [class="SpeedCrunch"] floating enable
 for_window [class="vlc"] floating enable
 for_window [class="irb"] floating enable
 for_window [class="Zenity"] floating enable
