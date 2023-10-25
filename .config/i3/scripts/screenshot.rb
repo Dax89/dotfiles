@@ -57,11 +57,11 @@ filepath = if options[:clipboard]
 
 success = case options[:mode]
           when Modes::ACTIVE
-            system("maim --window #{grab_active_window} #{filepath}")
+            system("maim -u --window #{grab_active_window} #{filepath}")
           when Modes::SELECTION
-            system("maim --select #{filepath}")
+            system("maim -u --select #{filepath}")
           else
-            system("maim #{filepath}")
+            system("maim -u #{filepath}")
           end
 
 unless success
