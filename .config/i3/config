@@ -32,7 +32,7 @@ for_window [all] title_window_icon padding 3px
 exec --no-startup-id ~/.me/scripts/org.vifm.FileManager1.rb
 
 # Device Manager
-exec --no-startup-id udiskie --no-automount --tray
+exec --no-startup-id udiskie --tray
 
 # Bluetooth Manager
 exec --no-startup-id blueman-applet
