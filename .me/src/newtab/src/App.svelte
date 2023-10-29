@@ -24,7 +24,7 @@
 <svelte:window on:keyup={onWindowKeyUp} />
 
 <div class="flex justify-center items-center h-screen flex-col gap-y-5 bg-[#F9F9FB]">
-    <input style:width="980px" type="text" placeholder="Search" on:keyup={onInputKeyUp} on:focus={e => e.target.select()} bind:this={inpsearch}/>
+    <input class="w-3/4" type="text" placeholder="Search" on:keyup={onInputKeyUp} on:focus={e => e.target.select()} bind:this={inpsearch}/>
     <div class="grid grid-cols-3 md:grid-cols-7 gap-5">
         {#each websites as ws}
             <div class="flex flex-col gap-y-3 w-28">
