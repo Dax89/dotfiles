@@ -2,6 +2,10 @@
 
 " :fileviewer pattern1,pattern2 consoleviewer
 
+if executable('tree')
+    fileviewer */,.*/ tree -L 2 --dirsfirst -C -I .git %c
+endif
+
 " Pdf
 fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
 
