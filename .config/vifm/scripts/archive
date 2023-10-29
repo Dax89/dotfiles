@@ -62,7 +62,7 @@ def check_extracted_folder(name)
 
   return unless name.end_with? '.tar'
 
-  FileUtils.mv name, name[..-5]
+  FileUtils.mv name, name[..-5] if File.exist? name
 end
 
 def list_archive
