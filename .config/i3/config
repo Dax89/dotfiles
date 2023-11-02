@@ -97,7 +97,7 @@ bindsym $mod+Return exec --no-startup-id "kitty --single-instance"
 bindsym $mod+Shift+i exec --no-startup-id "kitty --class=irb irb"
 bindsym $mod+Shift+n exec --no-startup-id "nvim-qt"
 bindsym $mod+Shift+b exec --no-startup-id "librewolf"
-bindsym $mod+Shift+s exec --no-startup-id "~/.config/i3/scripts/startup.sh"
+bindsym $mod+Shift+s exec --no-startup-id "~/.config/i3/scripts/startup.rb"
 bindsym $mod+Shift+Return exec --no-startup-id "kitty vifm"
 
 # mixer
