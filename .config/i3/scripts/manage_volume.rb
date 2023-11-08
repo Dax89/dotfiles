@@ -31,9 +31,8 @@ def notify_volume
            'audio-volume-overamplified-symbolic'
          end
 
-  summary = current_sink || '<NO SINK>'
-  body = "Volume [#{vol}%]"
-  system "dunstify -a #{VOLUME_APP} -h int:value:#{vol} -i #{icon} -u low '#{summary}' '#{body}'"
+  sink = current_sink || '<NO SINK>'
+  system "dunstify -a #{VOLUME_APP} -h int:value:#{vol} -i #{icon} -u low '#{vol}% [#{sink}]'"
 end
 
 def read_volume
