@@ -8,11 +8,11 @@ def current_sink
   sinks = JSON.parse `pactl -f json list sinks`
   selsink = `pactl get-default-sink`.chomp
   sink = sinks.find { |x| x['name'] == selsink }
-  return nil unless sink
+  return '<NO SINK>' unless sink
 
   name = sink['properties']['alsa.name']
   name = sink['description'] if name.nil?
-  name
+  name || '<NO SINK>'
 end
 
 def muted?
@@ -31,8 +31,7 @@ def notify_volume
            'audio-volume-overamplified-symbolic'
          end
 
-  sink = current_sink || '<NO SINK>'
-  system "dunstify -a #{VOLUME_APP} -h int:value:#{vol} -i #{icon} -u low '#{vol}% [#{sink}]'"
+  system "dunstify -a #{VOLUME_APP} -h int:value:#{vol} -i #{icon} -u low '#{vol}% [#{current_sink}]'"
 end
 
 def read_volume
@@ -52,7 +51,7 @@ def toggle_mute
   system 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
 
   if muted?
-    system "dunstify -a #{VOLUME_APP} 'OFF' -i audio-volume-muted-symbolic -u low"
+    system "dunstify -a #{VOLUME_APP} -i audio-volume-muted-symbolic -u low 'OFF [#{current_sink}]'"
   else
     notify_volume
   end
