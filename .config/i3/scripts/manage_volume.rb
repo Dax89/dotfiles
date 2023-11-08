@@ -1,6 +1,19 @@
 #! /bin/env ruby
 
+require 'json'
+
 VOLUME_APP = 'i3-volume'.freeze
+
+def current_sink
+  sinks = JSON.parse `pactl -f json list sinks`
+  selsink = `pactl get-default-sink`.chomp
+  sink = sinks.find { |x| x['name'] == selsink }
+  return nil unless sink
+
+  name = sink['properties']['alsa.name']
+  name = sink['description'] if name.nil?
+  name
+end
 
 def muted?
   `pactl get-sink-mute @DEFAULT_SINK@`.chop.end_with?('yes')
@@ -18,7 +31,9 @@ def notify_volume
            'audio-volume-overamplified-symbolic'
          end
 
-  system "dunstify -a #{VOLUME_APP} -h int:value:#{vol} 'Volume [#{vol}%]' -i #{icon} -u low"
+  summary = current_sink || '<NO SINK>'
+  body = "Volume [#{vol}%]"
+  system "dunstify -a #{VOLUME_APP} -h int:value:#{vol} -i #{icon} -u low '#{summary}' '#{body}'"
 end
 
 def read_volume
