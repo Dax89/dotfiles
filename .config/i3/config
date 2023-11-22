@@ -26,6 +26,8 @@ for_window [class="Vampire_Survivors"] floating enable
 for_window [class="^VirtualBox"] floating enable
 for_window [class="^steam"] floating enable
 for_window [class="^Blueman"] floating enable
+for_window [class="LibreWolf" window_role="page-info"] floating enable
+for_window [class="LibreWolf" window_role="Organizer"] floating enable
 for_window [all] title_window_icon padding 3px
 
 # DBus Services
