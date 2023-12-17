@@ -26,6 +26,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 
 # Configure Misc
 export UNISON="$XDG_DATA_HOME/unison"
+export GOPATH="$XDG_DATA_HOME/go"
 
 # Update PATH variable
 PATH="$PATH:$HOME/.local/bin" # local binaries
