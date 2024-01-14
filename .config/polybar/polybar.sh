@@ -1,5 +1,9 @@
-#! /bin/env bash
+#!/bin/sh
 
-killall polybar
-while pgrep -u $UID -x polybar > /dev/null; do sleep 1; done
+pkill -x polybar
+
+while pgrep -u "$(id -u)" -x polybar > /dev/null; do 
+    sleep 1;
+done
+
 polybar&

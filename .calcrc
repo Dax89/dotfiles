@@ -1,0 +1,23 @@
+dump = config("tab", 0)
+dump = config("resource_debug", 1)
+dump = config("prompt", "\001\033[32m\002calc➜ \001\033[39m\002")
+dump = config("more",   "\001\033[32m\002      ... \001\033[39m\002")
+
+define bp(b, v) {
+	local o = base(b);
+	print v;
+	base(o);
+}
+
+define hex(v) {
+	return bp(16, v);
+}
+
+define dec(v) {
+	return bp(10, v);
+}
+
+define bin(v) {
+	return bp(2, v);
+}
+

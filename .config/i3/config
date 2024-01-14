@@ -18,7 +18,7 @@ for_window [class="TelegramDesktop"] floating enable
 for_window [class="discord"] floating enable
 for_window [class="thunderbird"] floating enable
 for_window [class="vlc"] floating enable
-for_window [class="irb"] floating enable
+for_window [class="repl"] floating enable
 for_window [class="Zenity"] floating enable
 for_window [class="Nitrogen"] floating enable
 for_window [class="Gpicview"] floating enable
@@ -52,7 +52,7 @@ exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 # Execute OpenRGB
-exec --no-startup-id ~/.config/i3/scripts/openrgb.rb
+exec --no-startup-id ~/.config/i3/scripts/openrgb.sh
 
 # Start RedShift
 exec --no-startup-id redshift
@@ -68,22 +68,22 @@ exec --no-startup-id ~/.config/polybar/polybar.sh
 bindsym $mod+c exec --no-startup-id "rofi -modi 'Clipboard:greenclip print' -show Clipboard -theme-str 'mode-switcher { enabled: false; }'"
 
 # Screenshots
-bindsym --release Print exec --no-startup-id ~/.config/i3/scripts/screenshot.rb
-bindsym --release Shift+Print exec --no-startup-id ~/.config/i3/scripts/screenshot.rb -m selection
-bindsym --release $mod+Print exec --no-startup-id ~/.config/i3/scripts/screenshot.rb -m active
+bindsym --release Print exec --no-startup-id ~/.config/i3/scripts/screenshot.sh
+bindsym --release Shift+Print exec --no-startup-id ~/.config/i3/scripts/screenshot.sh -m selection
+bindsym --release $mod+Print exec --no-startup-id ~/.config/i3/scripts/screenshot.sh -m active
 
-bindsym --release Ctrl+Print exec --no-startup-id ~/.config/i3/scripts/screenshot.rb -c
-bindsym --release Ctrl+Shift+Print exec --no-startup-id ~/.config/i3/scripts/screenshot.rb -m selection -c
-bindsym --release Ctrl+$mod+Print exec --no-startup-id ~/.config/i3/scripts/screenshot.rb -m active -c
+bindsym --release Ctrl+Print exec --no-startup-id ~/.config/i3/scripts/screenshot.sh -c
+bindsym --release Ctrl+Shift+Print exec --no-startup-id ~/.config/i3/scripts/screenshot.sh -m selection -c
+bindsym --release Ctrl+$mod+Print exec --no-startup-id ~/.config/i3/scripts/screenshot.sh -m active -c
 
 # Use light to adjust backlight
 bindsym XF86MonBrightnessUp exec --no-startup-id light -s sysfs/backlight/intel\_backlight -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -s sysfs/backlight/intel\_backlight -U 5
 
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/manage_volume.rb set-volume +1%
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/manage_volume.rb set-volume -1%
-bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/manage_volume.rb toggle-mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/manage_volume.sh set-volume +1%
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/manage_volume.sh set-volume -1%
+bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/manage_volume.sh toggle-mute
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Media player controls
@@ -96,17 +96,14 @@ bindsym XF86AudioStop exec --no-startup-id playerctl stop
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec --no-startup-id "kitty --single-instance"
-bindsym $mod+Shift+i exec --no-startup-id "kitty --class=irb irb"
+bindsym $mod+Shift+i exec --no-startup-id "kitty --class=repl calc"
 bindsym $mod+Shift+n exec --no-startup-id "nvim-qt"
 bindsym $mod+Shift+b exec --no-startup-id "librewolf"
-bindsym $mod+Shift+s exec --no-startup-id "~/.config/i3/scripts/startup.rb"
+bindsym $mod+Shift+s exec --no-startup-id "~/.config/i3/scripts/startup.sh"
 bindsym $mod+Shift+Return exec --no-startup-id "kitty vifm"
 
 # mixer
-bindsym $mod+m exec --no-startup-id "rofi -show Mixer -modi 'Mixer:~/.config/rofi/mixer.rb' -theme-str 'mode-switcher { enabled: false; }'"
-
-# bluetooth
-bindsym $mod+b exec --no-startup-id rofi-bluetooth
+bindsym $mod+m exec --no-startup-id "rofi -show Mixer -modi 'Mixer:~/.config/rofi/mixer.sh' -theme-str 'mode-switcher { enabled: false; }'"
 
 # kill focused window
 bindsym --whole-window $mod+button2 kill
