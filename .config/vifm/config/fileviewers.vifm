@@ -47,7 +47,7 @@ fileviewer
             \<application/java-archive>,<application/zip>,<application/x-rar>,
             \<application/x-xz>,<application/x-gz>,<application/x-7z-compressed>,
             \<application/x-tar>,<application/x-bz2>,<application/gzip>,<application/bzip2>
-            \ $VIFM/scripts/archive -m l -w %"d %"f | less
+            \ $VIFM/scripts/archive l %"d %"f | less
 
 " Office files
 fileviewer {*.doc},<application/msword> catdoc %c

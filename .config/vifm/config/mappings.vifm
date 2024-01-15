@@ -14,6 +14,9 @@ nnoremap T tk
 " Start shell in current directory
 nnoremap s :shell<CR>
 
+" Show permissions dialog
+nnoremap ,p :chmod<CR>
+
 " Show launch option
 nnoremap ,o :file<CR>
 

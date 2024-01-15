@@ -1,162 +1,196 @@
-#!/bin/env ruby
-# rubocop:disable Style/GlobalVars
+#!/bin/sh
 
 # Supported Extensions:
-# zip, rar, 7z, tar, tar.xz, tar.gz, tar.bz2
+# .jar, zip, rar, 7z, tar, tar.xz, tar.gz, tar.bz2
 
-require 'securerandom'
-require 'fileutils'
-require 'optparse'
+usage() {
+    echo "Usage:
+  archive [options] [mode] [arg] [workdir]
 
-class Modes
-  LIST    = 0
-  EXTRACT = 1
-  CREATE  = 2
-end
+  Arguments:
+    mode         (l=list, x=extract, c=create)
 
-$options = {}
+  Options:
+    -p PASSWORD  Archive password (optional)
+    -o FILENAME  Output filename (optional)"
+}
 
-optionparser = OptionParser.new do |opt|
-  opt.on('-w', '--workdir WORKDIR', 'Working dir') { |x| $options[:workdir] = x }
-  opt.on('-o', '--output FILENAME', 'Output filename (optional)') { |x| $options[:filename] = x }
-  opt.on('-p', '--password PASSWORD', 'Archive Password (optional)') { |x| $options[:password] = x }
+invalid_workdir() {
+    if [ -z "$workdir" ]; then
+        echo "ERROR: working dir is empty"
+    fi
 
-  opt.on('-m', '--mode MODE', 'Mode (l=list, x=extract, c=create)') do |mode|
-    $options[:mode] = case mode
-                      when 'l'
-                        Modes::LIST
-                      when 'x'
-                        Modes::EXTRACT
-                      when 'c'
-                        Modes::CREATE
-                      end
-  end
-end
+    usage
+    exit 1
+}
 
-optionparser.parse!
+unsupported_password() {
+    echo "ERROR: '$1' archive type doesn't support encryption"
+    usage
+    exit 1
+}
 
-raise OptionParser::MissingArgument if ARGV.empty?
-raise OptionParser::InvalidArgument if $options[:mode].nil?
-raise OptionParser::MissingArgument if $options[:workdir].nil?
+unsupported_archive_type() {
+    echo "ERROR: unsupported archive type '$1'"
+    usage
+    exit 1
+}
 
-$arg = ARGV[0]
+missing_filename() {
+    echo "ERROR: filename missing"
+    usage
+    exit 1
+}
 
-$tmpname = SecureRandom.uuid
-Dir.chdir $options[:workdir]
+get_mimetype() {
+    file -b --mime-type "$1"
+}
 
-def get_mimetype(filename)
-  `file -b --mime-type '#{filename}'`.chomp!
-end
+check_extracted_folder() {
+    tmpdir="$1"
+    name="$2"
+    files=$(find "${tmpdir}"/* -prune -printf '%f\n')
 
-def check_extracted_folder(name)
-  children = Dir.children $tmpname
+    if [ "$(echo "$files" | wc -l)" -eq 1 ]; then
+        if [ -d "$PWD/$files" ]; then
+            mv -f "$tmpdir/$files"/* "$PWD"
+        else
+            mv -f "$tmpdir/$files" "$PWD"
+        fi
 
-  if children.length == 1
-    childrenpath = File.join $tmpname, children.first
-    FileUtils.mv childrenpath, Dir.getwd, force: true
-    FileUtils.rmdir $tmpname
-    FileUtils.rmdir name if Dir.exist?(name) && Dir.empty?(name)
-  else
-    FileUtils.mv $tmpname, name
-  end
+        [ -d "$tmpdir" ] && rm -r "$tmpdir"
+    else
+        mv "$tmpdir" "$name"
+    fi
 
-  return unless name.end_with? '.tar'
+    case "$name" in
+        *.tar) [ -d "$name" ] && mv -f "$name" "${name%*.tar}" ;;
+        *) ;;
+    esac
+}
 
-  FileUtils.mv name, name[..-5] if File.exist? name
-end
+list_archive() {
+    if [ -z "$arg" ]; then
+        missing_filename
+    fi
 
-def list_archive
-  mime = get_mimetype $arg
+    mime=$(get_mimetype "$arg")
 
-  case mime
-  when 'application/zip'
-    system "unzip -l '#{$arg}'"
-  when 'application/x-rar'
-    system "unrar l '#{$arg}'"
-  when 'application/x-7z-compressed'
-    system "7z l '#{$arg}'"
-  when 'application/x-tar', 'application/x-xz', 'application/x-gz',
-       'application/x-bz2', 'application/gzip', 'application/x-bzip2'
-    system "tar tf '#{$arg}' | tree --fromfile -C --dirsfirst"
-  else
-    raise "Cannot list #{$arg} files #{mime}"
-  end
-end
+    case "$mime" in
+        application/java-archive | application/zip) unzip -l "$arg" ;;
+        application/x-rar) unrar l "$arg" ;;
+        application/x-7z-compressed) 7z l "$arg" ;;
 
-def extract_archive
-  # https://www.cyberciti.biz/faq/howto-extract-tar-file-to-specific-directory-on-unixlinux/
-  name = File.basename $arg, File.extname($arg)
-  mime = get_mimetype $arg
+        application/x-tar | application/x-xz | application/x-gz | \
+        application/x-bz2 | application/gzip | application/x-bzip2)
+            tar tf "$arg" | tree --fromfile -C --dirsfirst
+            ;;
 
-  case mime
-  when 'application/zip'
-    system "unzip -o -d #{$tmpname} '#{$arg}'"
-  when 'application/x-rar'
-    FileUtils.mkdir $tmpname
-    system "unrar x '#{$arg}' #{$tmpname}"
-  when 'application/x-7z-compressed'
-    system "7z x '#{$arg}' -o#{$tmpname}"
-  when 'application/x-tar', 'application/x-xz'
-    FileUtils.mkdir $tmpname
-    system "tar xvf '#{$arg}' -C#{$tmpname}"
-  when 'application/x-gz', 'application/gzip'
-    FileUtils.mkdir $tmpname
-    system "tar zxvf '#{$arg}' -C#{$tmpname}"
-  when 'application/x-bz2', 'application/x-bzip2'
-    FileUtils.mkdir $tmpname
-    system "tar jxvf '#{$arg}' -C#{$tmpname}"
-  else
-    raise "Cannot extract #{$arg} files (#{mime})"
-  end
+        *)
+            echo "Cannot list $arg files $mime"
+            exit 1
+            ;;
+    esac
+}
 
-  check_extracted_folder name
-end
+extract_archive() {
+    # https://www.cyberciti.biz/faq/howto-extract-tar-file-to-specific-directory-on-unixlinux
+    mime=$(get_mimetype "$arg")
+    tmpdir=$(mktemp -d)
 
-def create_archive
-  filename = $options[:filename]
-  raise OptionParser::MissingArgument if filename.nil? || filename.empty?
+    case "$mime" in
+        application/java-archive | application/zip) unzip -o -d "$tmpdir" "$arg" ;;
+        application/x-rar) unrar x "$arg" "$tmpdir" ;;
+        application/x-7z-compressed) 7z x "$arg" "-o$tmpdir" ;;
+        application/x-tar | application/x-xz) tar xvf "$arg" "-C$tmpdir" ;;
+        application/x-gz | application/gzip) tar zxvf "$arg" "-C$tmpdir" ;;
+        application/x-bz2 | application/x-bzip2) tar jxvf "$arg" "-C$tmpdir" ;;
 
-  password = $options[:password]
-  ext = File.extname filename
+        *)
+            echo "ERROR: cannot extract '$arg' ($mime)"
+            exit 1
+            ;;
+    esac
 
-  case ext
-  when '.zip'
-    password = "-P #{password}" unless password.nil?
-    system "zip -r #{password} #{filename} #{$arg}"
-  when '.rar'
-    password = "-hp#{password}" unless password.nil?
-    system "rar #{password} a -r '#{filename}' #{$arg}"
-  when '.7z'
-    password = "-P#{password}" unless password.nil?
-    system "7z #{password} a -r '#{filename}' #{$arg}"
-  when '.tar'
-    raise '.tar archive doesn\'t support passwords' unless password.nil?
+    name="${arg%.*}"
+    check_extracted_folder "$tmpdir" "$name"
+}
 
-    system "tar cvf '#{filename}' #{$arg}"
-  when '.xz'
-    raise '.tar.xz archive doesn\'t support passwords' unless password.nil?
+create_archive() {
+    if [ -z "$arg" ]; then
+        echo "ERROR: missing filename(s)"
+        usage
+        exit 1
+    fi
 
-    system "tar cvfJ '#{filename}' #{$arg}"
-  when '.gz'
-    raise '.tar.gz archive doesn\'t support passwords' unless password.nil?
+    ext="${output##*.}"
+    [ -z "$password" ] && unset "$password"
 
-    system "tar cvfz '#{filename}' #{$arg}"
-  when '.bz2'
-    raise '.tar.bz2 archive doesn\'t support passwords' unless password.nil?
+    case "$ext" in
+        zip)
+            [ -n "$password" ] && password="-P '$password'"
+            eval "zip -r $password '$output' $arg"
+            ;;
 
-    system "tar cvfj '#{filename}' #{$arg}"
-  else
-    raise "Cannot create archive #{$arg} (#{ext})"
-  end
-end
+        rar)
+            [ -n "$password" ] && password="-hp '$password'"
+            eval "rar -r $password a -r '$output' $arg"
+            ;;
 
-case $options[:mode]
-when Modes::LIST
-  list_archive
-when Modes::EXTRACT
-  extract_archive
-when Modes::CREATE
-  create_archive
-end
+        7z)
+            [ -n "$password" ] && password="-P'$password'"
+            eval "7z '$password' a -r '$output' $arg"
+            ;;
 
-# rubocop:enable Style/GlobalVars
+        tar)
+            [ -n "$password" ] && unsupported_password "$ext"
+            eval "tar cvf '$output' $arg"
+            ;;
+
+        xz)
+            [ -n "$password" ] && unsupported_password "$ext"
+            eval "tar cvJ '$output' $arg"
+            ;;
+
+        gz)
+            [ -n "$password" ] && unsupported_password "$ext"
+            eval "tar cvfz '$output' $arg"
+            ;;
+
+        bz2)
+            [ -n "$password" ] && unsupported_password "$ext"
+            eval "tar cvfj '$output' $arg"
+            ;;
+
+        *) unsupported_archive_type "$ext" ;;
+    esac
+}
+
+password=""
+output=""
+
+while getopts ":p:o:" opt; do
+    case $opt in
+        p)  password="$OPTARG" ;;
+        o)  output="$OPTARG" ;;
+        :)  echo "missing argument"; exit 2 ;;
+        \?) echo "invalid option '$opt'"; exit 2 ;;
+    esac
+done
+
+# Filter out arguments that start with "-" and move them.
+shift "$((OPTIND - 1))" 
+
+mode=$1
+workdir=$2
+arg=$3
+
+[ -z "$workdir" ] && invalid_workdir
+cd "$workdir" || invalid_workdir
+
+case "$mode" in
+    l) list_archive ;;
+    x) extract_archive ;;
+    c) create_archive ;;
+    *) usage; exit 2 ;;
+esac

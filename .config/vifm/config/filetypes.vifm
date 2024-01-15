@@ -54,9 +54,9 @@ filetype
             \{*.rar},<application/x-rar>,
             \{*.7z},<application/x-7z-compressed>
             \ {View}
-            \ $VIFM/scripts/archive -m l -w %"d  %"f | less,
+            \ $VIFM/scripts/archive l %"d %"f | less,
             \ {Extract}
-            \ $VIFM/scripts/archive -m x -w %"d  %"f,
+            \ $VIFM/scripts/archive x %"d %"f,
 
 " Image
 filextype <image/*>

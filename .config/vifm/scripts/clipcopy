@@ -1,12 +1,14 @@
-#!/bin/env ruby
+#!/bin/sh
 
-files = ARGV[0].scan(/"([^"]+)"/).flatten
-path = ARGV[1]
+files=$(echo "$1" | awk -v path="$2" '{
+    while(match($0, /"([^"]+)"/)) {
+        f = substr($0, RSTART + 1, RLENGTH - 2);
+        print "file://"path"/"f;
+        $0 = substr($0, RSTART + RLENGTH);
+    }
+}')
 
-unless files.empty?
-  tocopy = files.map { |x| "file://#{path}/#{x}" }
-                .join "\r\n"
-  system("echo -e '#{tocopy}' | xclip -i -selection clipboard -t text/uri-list > /dev/null")
-end
-
-puts "#{files.length} files(s) copied to clipboard"
+if [ -n "$files" ]; then
+    echo "$files" | xclip -i -selection clipboard -t text/uri-list > /dev/null
+    echo "$(echo "$files" | wc -l) files(s) copied to clipboard"
+fi
