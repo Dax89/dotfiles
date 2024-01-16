@@ -49,13 +49,13 @@ get_mimetype() {
 check_extracted_folder() {
     tmpdir="$1"
     name="$2"
-    files=$(find "${tmpdir}"/* -prune -printf '%f\n')
+    files=$(printf "%s\n" "$tmpdir/"*)
 
     if [ "$(echo "$files" | wc -l)" -eq 1 ]; then
         if [ -d "$PWD/$files" ]; then
-            mv -f "$tmpdir/$files"/* "$PWD"
+            mv -f "$files/*" "$PWD"
         else
-            mv -f "$tmpdir/$files" "$PWD"
+            mv -f "$files" "$PWD"
         fi
 
         [ -d "$tmpdir" ] && rm -r "$tmpdir"
@@ -123,43 +123,63 @@ create_archive() {
         exit 1
     fi
 
+    # Disable globbing to make the word-splitting below safe.
+    set -f 
+
+    # Set the argument list to the word-splitted string.
+    # This removes all leading/trailing white-space and reduces
+    # all instances of multiple spaces to a single ("  " -> " ").
+    # shellcheck disable=2086
+    set -- $1
+
+    # Re-enable globbing.
+    set +f
+
     ext="${output##*.}"
-    [ -z "$password" ] && unset "$password"
 
     case "$ext" in
         zip)
-            [ -n "$password" ] && password="-P '$password'"
-            eval "zip -r $password '$output' $arg"
+            if [ -n "$password" ]; then
+                zip -r -P "$password" "$output" "$@"
+            else
+                zip -r "$output" "$@"
+            fi
             ;;
 
         rar)
-            [ -n "$password" ] && password="-hp '$password'"
-            eval "rar -r $password a -r '$output' $arg"
+            if [ -n "$password" ]; then
+                rar -r -hp "$password" a -r "$output" "$@"
+            else 
+                rar -r a -r "$output" "$@"
+            fi
             ;;
 
         7z)
-            [ -n "$password" ] && password="-P'$password'"
-            eval "7z '$password' a -r '$output' $arg"
+            if [ -n "$password" ]; then 
+                7z -P"$password" a -r "$output" "$@"
+            else
+                7z a -r "$output" "$@"
+            fi
             ;;
 
         tar)
             [ -n "$password" ] && unsupported_password "$ext"
-            eval "tar cvf '$output' $arg"
+            tar cvf "$output" "$@"
             ;;
 
         xz)
             [ -n "$password" ] && unsupported_password "$ext"
-            eval "tar cvJ '$output' $arg"
+            tar cvJ "$output" "$@"
             ;;
 
         gz)
             [ -n "$password" ] && unsupported_password "$ext"
-            eval "tar cvfz '$output' $arg"
+            tar cvfz "$output" "$@"
             ;;
 
         bz2)
             [ -n "$password" ] && unsupported_password "$ext"
-            eval "tar cvfj '$output' $arg"
+            tar cvfj "$output" "$@"
             ;;
 
         *) unsupported_archive_type "$ext" ;;
@@ -191,6 +211,6 @@ cd "$workdir" || invalid_workdir
 case "$mode" in
     l) list_archive ;;
     x) extract_archive ;;
-    c) create_archive ;;
+    c) create_archive "$arg" ;;
     *) usage; exit 2 ;;
 esac
