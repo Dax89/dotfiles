@@ -5,7 +5,7 @@
 alias ls="ls --color=auto"
 alias tree="tree -C"
 alias grep="grep --color=auto"
-alias dotfiles="/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias dotfiles='/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias icat="kitten icat"
 
 # Set Environment Variables
