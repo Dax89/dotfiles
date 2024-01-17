@@ -31,7 +31,7 @@ for_window [class="LibreWolf" window_role="Organizer"] floating enable
 for_window [all] title_window_icon padding 3px
 
 # DBus Services
-exec --no-startup-id ~/.me/scripts/org.vifm.FileManager1.rb
+exec --no-startup-id ~/.me/scripts/org.vifm.FileManager1.py
 
 # Device Manager
 exec --no-startup-id udiskie --tray
