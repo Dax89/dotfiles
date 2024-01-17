@@ -2,8 +2,5 @@
 # ~/.bashrc
 #
 
-[ -n "$PS1" ] && . ~/.bash_profile
+[ -n "$PS1" ] && . "$HOME"/.bash_profile
 [[ $- != *i* ]] && return
-
-# Autocomplete !command
-bind Space:magic-space
