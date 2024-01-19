@@ -12,9 +12,8 @@ get_current_sink() {
         return
     fi
 
-    name=$(echo "$sink" | jq -r ".properties.\"alsa.name\"")
-    [ -z "$name" ] && name=$(echo "$sink" | jq -r ".description")
-    [ -z "$name" ] && name="<NO SINK>"
+    name=$(echo "$sink" | jq -r ".properties.\"alsa.name\" // .description")
+    [ -z "$name" ] || [ "$name" = "null" ] && name="<NO SINK>"
     echo "$name"
 }
 
