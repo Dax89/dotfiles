@@ -88,12 +88,16 @@ device_updated() {
 
 REGEX="Event 'change' on \(server\|sink\) #[0-9]\+" 
 
-pactl subscribe | grep --line-buffered "$REGEX" | while read -r line; do
-    m=$(expr "$line" : "$REGEX")
+if [ $(pgrep -x pipewire) ]; then
+    pactl subscribe | grep --line-buffered "$REGEX" | while read -r line; do
+        m=$(expr "$line" : "$REGEX")
 
-    case "$m" in
-        server) device_changed ;;
-        sink) device_updated ;;
-        *) echo "Unsupported case '$m'" ;;
-    esac
-done
+        case "$m" in
+            server) device_changed ;;
+            sink) device_updated ;;
+            *) echo "Unsupported case '$m'" ;;
+        esac
+    done
+else
+    echo "%{T4}%{F#9ece6a}No Audio{F-}%{T-}"
+fi
