@@ -23,9 +23,6 @@ get_current_sinks() {
     pactl -f json list sinks | jq -c 'INDEX(.name)'
 }
 
-device=$(get_current_device)
-sinks=$(get_current_sinks)
-
 is_muted() {
     echo "$sinks" | jq -r '."'"$device"'".mute'
 }
@@ -88,16 +85,32 @@ device_updated() {
 
 REGEX="Event 'change' on \(server\|sink\) #[0-9]\+" 
 
-if [ $(pgrep -x pipewire) ]; then
-    pactl subscribe | grep --line-buffered "$REGEX" | while read -r line; do
-        m=$(expr "$line" : "$REGEX")
+loop() {
+    if pgrep -x pipewire; then
+        sinks=$(get_current_sinks)
+        device=""       # Reset device
+        device_changed  # Fake a 'changed' event for the first time
+        device=$(get_current_device)
+        
+        pactl subscribe | grep --line-buffered "$REGEX" | while read -r line; do
+            m=$(expr "$line" : "$REGEX")
 
-        case "$m" in
-            server) device_changed ;;
-            sink) device_updated ;;
-            *) echo "Unsupported case '$m'" ;;
-        esac
-    done
-else
-    echo "%{T4}%{F#9ece6a}No Audio{F-}%{T-}"
-fi
+            case "$m" in
+                server) device_changed ;;
+                sink) device_updated ;;
+                *) echo "Unsupported case '$m'" ;;
+            esac
+        done
+
+        sleep 1
+    else
+        while ! pgrep -x pipewire; do
+            echo "%{T4}%{F#9ece6a}No Audio{F-}%{T-}"
+            sleep 1
+        done
+    fi
+
+    loop
+}
+
+loop
