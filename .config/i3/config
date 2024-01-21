@@ -46,16 +46,16 @@ exec --no-startup-id greenclip daemon > /dev/null
 exec --no-startup-id nitrogen --restore
 
 # Start Notification Manager
-exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+# exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 
 # Start Picom compositor
-exec --no-startup-id picom --config ~/.config/picom/picom.conf
+# exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 # Execute OpenRGB
 exec --no-startup-id ~/.config/i3/scripts/openrgb.sh
 
 # Start RedShift
-exec --no-startup-id redshift
+# exec --no-startup-id redshift
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart

@@ -105,7 +105,7 @@ loop() {
         sleep 1
     else
         while ! pgrep -x pipewire; do
-            echo "%{T4}%{F#9ece6a}No Audio{F-}%{T-}"
+            echo "%{T4}%{F#9ece6a}No Audio%{F-}%{T-}"
             sleep 1
         done
     fi
