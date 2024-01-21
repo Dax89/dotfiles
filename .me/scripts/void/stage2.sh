@@ -47,16 +47,19 @@ mkdir -p /etc/pipewire/pipewire.conf.d
 ln -s /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
 ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
 
-cd /home/"$user" || error "Home for user '$user' does not exists"
+if [ ! -d /home/"$user"/.me ]; then
+    echo "Downloading dotfiles..."
+    cd /home/"$user" || error "Home for user '$user' does not exists"
 
-# Part of dotfiles
-delete_if .bashrc
-delete_if .bash_profile
-delete_if .inputrc
+    # Part of dotfiles
+    delete_if .bashrc
+    delete_if .bash_profile
+    delete_if .inputrc
 
-curl -LO https://raw.githubusercontent.com/Dax89/dotfiles/master/.me/scripts/init_dotfiles.sh
-chown "$user":"$user" ./init_dotfiles.sh
+    curl -LO https://raw.githubusercontent.com/Dax89/dotfiles/master/.me/scripts/init_dotfiles.sh
+    chown "$user":"$user" ./init_dotfiles.sh
 
-su "$user" << EOF
+    su "$user" << EOF
 . ./init_dotfiles.sh
 EOF
+fi
