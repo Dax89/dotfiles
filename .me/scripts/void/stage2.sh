@@ -25,11 +25,14 @@ else
 fi
 
 # Install packages
-xbps-install -Sy xtools xorg-minimal xinit jq socklog-void \
- polkit elogind mesa lm_sensors pipewire wireplumber git \
- picom i3 polybar rofi kitty kitty-terminfo redshift geoclue2 \
- noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk noto-fonts-emoji \
- nerd-fonts-symbols-ttf blueman udiskie || exit 1
+xbps-install -Sy \
+ xtools xorg-minimal xinit xset xclip \
+ jq socklog-void polkit elogind mesa lm_sensors pipewire wireplumber git \
+ picom i3 polybar dunst rofi redshift geoclue2 papirus-icon-theme \
+ kitty kitty-terminfo \
+ noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk \
+ noto-fonts-emoji nerd-fonts-symbols-ttf \
+ blueman udiskie vifm dragon qt5ct qt6ct || exit 1
 
 # Enable services
 ## Logging
