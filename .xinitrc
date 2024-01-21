@@ -8,6 +8,10 @@ execute_if() {
     fi
 }
 
+has_systemd() {
+    command -v systemctl > /dev/null
+}
+
 # Source initialization scripts
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
@@ -16,6 +20,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     unset f
 fi
 
+[ -f ~/.bash_profile ] && . "$HOME"/.bash_profile
+
 # Start localization service
 if [ -f /usr/lib/geoclue-2.0/demos/agent ]; then
     /usr/lib/geoclue-2.0/demos/agent &
@@ -23,11 +29,13 @@ elif [ -f /usr/libexec/geoclue-2.0/demos/agent ]; then
     /usr/libexec/geoclue-2.0/demos/agent &
 fi
 
-[ -f ~/.bash_profile ] && . "$HOME"/.bash_profile
-
 execute_if picom --config "$HOME"/.config/picom/picom.conf
 execute_if dunst --config "$HOME"/.config/dunst/dunstrc
 execute_if redshift
+
+if ! has_systemd; then
+    pipewire &
+fi
 
 xset r rate 250 50 &
 exec i3

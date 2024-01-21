@@ -5,7 +5,7 @@ sourceidx=-1
 
 print_entries() {
     entries=$1 selentry=$2 icon=$3 type=$4 index=$5
-    eval "${type}idx"=$(("$(echo "$entries" | jq -r 'map(.name == "'"$selentry"'") | index(true)')" + index))
+    eval "${type}idx"=$(($(echo "$entries" | jq -r 'map(.name == "'"$selentry"'") | index(true)') + index))
 
     echo "$entries" | jq -r '
         .[] |
@@ -31,7 +31,7 @@ show_audio() {
     printf "\0active\x1f%d,%d" "$sinkidx" "$sourceidx"
 }
 
-if [ "$ROFI_RETV" -eq 1 ]; then
+if [ "$ROFI_RETV" = "1" ]; then
     echo "$ROFI_INFO" | jq -r '.name,.type,.id,.icon' | while read -r name &&
                                                               read -r type && 
                                                               read -r id &&
