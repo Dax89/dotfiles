@@ -23,11 +23,11 @@ elif [ -f /usr/libexec/geoclue-2.0/demos/agent ]; then
     /usr/libexec/geoclue-2.0/demos/agent &
 fi
 
-execute_if picom --config ~/.config/picom/picom.conf
-execute_if dunst --config ~/.config/dunst/dunstrc
-execute_if redshift
-
 [ -f ~/.bash_profile ] && . "$HOME"/.bash_profile
+
+execute_if picom --config "$HOME"/.config/picom/picom.conf
+execute_if dunst --config "$HOME"/.config/dunst/dunstrc
+execute_if redshift
 
 xset r rate 250 50 &
 exec i3
