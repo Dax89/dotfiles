@@ -59,10 +59,10 @@ if [ ! -d /home/"$user"/.me ]; then
     delete_if .bash_profile
     delete_if .inputrc
 
-    curl -LO https://raw.githubusercontent.com/Dax89/dotfiles/master/.me/scripts/init_dotfiles.sh
-    chown "$user":"$user" ./init_dotfiles.sh
+    curl -LO https://raw.githubusercontent.com/Dax89/dotfiles/master/.me/scripts/get_dotfiles.sh
+    chown "$user":"$user" ./get_dotfiles.sh
 
     su "$user" << EOF
-. ./init_dotfiles.sh
+. ./get_dotfiles.sh
 EOF
 fi
