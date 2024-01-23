@@ -4,6 +4,7 @@ import dbus
 import dbus.service
 import subprocess
 import os
+import time
 from gi.repository import GLib
 from dbus.mainloop.glib import DBusGMainLoop
 
