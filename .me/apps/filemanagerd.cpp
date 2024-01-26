@@ -8,7 +8,6 @@
 // https://gitlab.gnome.org/GNOME/glib/-/blob/ee470da7c837d6c7cab5691e0c8fa7b48b2f5737/gio/tests/gdbus-example-server.c
 
 namespace {
-using std::array;
 
 constexpr const char* FILEMANAGER_NAME = "org.freedesktop.FileManager1";
 constexpr const char* FILEMANAGER_PATH = "/org/freedesktop/FileManager1";
@@ -93,7 +92,7 @@ const GDBusInterfaceVTable IFACE_VTABLE = {
     nullptr,
 };
 
-void on_bus_acquired(GDBusConnection* conn, const gchar* name, gpointer) {
+void on_bus_acquired(GDBusConnection* conn, const gchar* /*name*/, gpointer) {
     guint regid = g_dbus_connection_register_object(
         conn, FILEMANAGER_PATH, introspection->interfaces[0], &IFACE_VTABLE,
         nullptr, nullptr, nullptr);
@@ -101,7 +100,7 @@ void on_bus_acquired(GDBusConnection* conn, const gchar* name, gpointer) {
     g_assert(regid > 0);
 }
 
-void on_name_lost(GDBusConnection* conn, const gchar* name, gpointer) {
+void on_name_lost(GDBusConnection* /*conn*/, const gchar* /*name*/, gpointer) {
     std::exit(1);
 }
 
