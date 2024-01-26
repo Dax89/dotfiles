@@ -7,6 +7,7 @@ alias tree="tree -C"
 alias grep="grep --color=auto"
 alias dotfiles='/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias icat="kitten icat"
+alias syncapps='$HOME/.me/apps/sync_apps.sh'
 
 # Set Environment Variables
 export QT_QPA_PLATFORMTHEME=qt5ct

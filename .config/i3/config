@@ -30,8 +30,8 @@ for_window [class="LibreWolf" window_role="page-info"] floating enable
 for_window [class="LibreWolf" window_role="Organizer"] floating enable
 for_window [all] title_window_icon padding 3px
 
-# DBus Services
-exec --no-startup-id ~/.me/scripts/org.vifm.FileManager1.sh
+# File Manager
+exec --no-startup-id filemanagerd
 
 # Device Manager
 exec --no-startup-id udiskie --tray
@@ -40,7 +40,7 @@ exec --no-startup-id udiskie --tray
 exec --no-startup-id blueman-applet
 
 # Clipboard Tool
-exec --no-startup-id greenclip daemon > /dev/null
+ exec --no-startup-id greenclip daemon > /dev/null
 
 # Enable Wallpaper
 exec --no-startup-id nitrogen --restore
