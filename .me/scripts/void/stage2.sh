@@ -28,8 +28,8 @@ fi
 xbps-install -Sy \
  xtools xorg-minimal xinit xset xclip \
  jq socklog-void polkit elogind mesa lm_sensors pipewire wireplumber git \
- picom i3 polybar dunst rofi redshift geoclue2 papirus-icon-theme \
- kitty kitty-terminfo \
+ picom i3 polybar dunst rofi redshift geoclue2 playerctl \
+ calc kitty kitty-terminfo papirus-icon-theme \
  noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-cjk \
  noto-fonts-emoji nerd-fonts-symbols-ttf \
  blueman udiskie vifm dragon qt5ct qt6ct || exit 1
