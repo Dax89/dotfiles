@@ -45,9 +45,6 @@ exec --no-startup-id blueman-applet
 # Enable Wallpaper
 exec --no-startup-id nitrogen --restore
 
-# Local HTTP Server
-exec --no-startup-id ~/.me/scripts/http-local.sh
-
 # Execute OpenRGB
 exec --no-startup-id ~/.me/scripts/openrgb.sh
 
