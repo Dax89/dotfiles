@@ -79,5 +79,4 @@ if !has('win')
 endif
 
 " Set custom status line look
-highlight User1 ctermfg=234 ctermbg=149
 set statusline="%1* %A  %u:%g  %s %= %d  %{&sort} %*"
