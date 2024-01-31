@@ -19,7 +19,7 @@ elseif $EDITOR != ''
 endif
 
 " Color scheme
-colorscheme kanagawa
+colorscheme personal
 
 source $VIFM/config/layout.vifm
 source $VIFM/config/options.vifm

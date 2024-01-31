@@ -11,7 +11,7 @@ highlight Selected      ctermfg=01 ctermbg=-1 cterm=none
 highlight CurrLine      ctermfg=-1 ctermbg=-1 cterm=standout
 
 highlight WildMenu      ctermfg=07 ctermbg=08 cterm=underline
-highlight CmdLine       ctermfg=14 ctermbg=-1 cterm=none
+highlight CmdLine       ctermfg=07 ctermbg=-1 cterm=none
 highlight ErrorMsg      ctermfg=09 ctermbg=00 cterm=none
 
 highlight Directory     ctermfg=04 ctermbg=-1 cterm=bold

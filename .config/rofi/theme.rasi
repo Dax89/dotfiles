@@ -25,10 +25,10 @@ configuration {
     padding: 0;
     spacing: 0;
 
-    bg: #1f1f28;
-    fg: #dcd7ba;
-    primary: #7fb4ca;
-    secondary: #98bb6c;
+    bg: #282828;
+    fg: #efefef;
+    primary: #6699cc;
+    secondary: #81b24b;
 
     background-color: @bg;
     text-color: @fg;

@@ -34,15 +34,15 @@ is_bluetooth() {
 get_icon() {
     if [ "$(is_bluetooth)" = true ]; then
         if [ "$(is_muted)" = true ]; then
-            echo '%{F#c0a36e}%{T2}󰗿%{T-}%{F-}'
+            echo '%{F#dfae68}%{T2}󰗿%{T-}%{F-}'
         else
-            echo '%{F#7e9cd8}%{T2}󰗾%{T-}%{F-}'
+            echo '%{F#6699cc}%{T2}󰗾%{T-}%{F-}'
         fi
     else
         if [ "$(is_muted)" = true ]; then
-            echo '%{F#c0a36e}%{T2}󰖁%{T-}%{F-}'
+            echo '%{F#dfae68}%{T2}󰖁%{T-}%{F-}'
         else
-            echo '%{F#7e9cd8}%{T2}󱄡%{T-}%{F-}'
+            echo '%{F#6699cc}%{T2}󱄡%{T-}%{F-}'
         fi
     fi
 }
@@ -105,7 +105,7 @@ loop() {
         sleep 1
     else
         while ! pgrep -x pipewire; do
-            echo "%{T4}%{F#98bb6c}No Audio%{F-}%{T-}"
+            echo "%{T4}%{F#81b24b}No Audio%{F-}%{T-}"
             sleep 1
         done
     fi
