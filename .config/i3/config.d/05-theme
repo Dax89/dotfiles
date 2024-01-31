@@ -1,0 +1,16 @@
+# Color Scheme
+set $background #1f1f28
+set $foreground #dcd7ba
+set $primary    #7e9cd8
+set $urgent     #c34043
+set $inactive   #c0a36e
+
+# class                 border      background  text        indicator   child_border
+client.focused          $primary    $primary    $background $primary    $primary
+client.focused_inactive $inactive   $inactive   $background $inactive   $inactive
+client.unfocused        $background $background $foreground $background $background
+client.urgent           $urgent     $urgent     $background $urgent     $urgent
+client.placeholder      $primary    $primary    $background $primary    $primary
+client.background       $background
+
+# vi: ft=i3config
