@@ -99,4 +99,7 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+z focus child
 
+# toggle sticky modifier to the selected window
+bindsym $mod+p sticky toggle
+
 # vi: ft=i3config
