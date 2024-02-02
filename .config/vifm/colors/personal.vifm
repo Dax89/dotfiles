@@ -1,14 +1,14 @@
 highlight clear
 
-highlight Win           ctermfg=07 ctermbg=00 cterm=none
+highlight Win           ctermfg=15 ctermbg=00 cterm=none
 
-highlight TopLine       ctermfg=12 ctermbg=00 cterm=none
-highlight TopLineSel    ctermfg=11 ctermbg=00 cterm=bold
+highlight TopLine       ctermfg=04 ctermbg=00 cterm=none
+highlight TopLineSel    ctermfg=03 ctermbg=00 cterm=bold
 highlight StatusLine    ctermfg=00 ctermbg=04 cterm=none
-highlight Border        ctermfg=12 ctermbg=00 cterm=none
+highlight Border        ctermfg=04 ctermbg=00 cterm=none
 
 highlight Selected      ctermfg=01 ctermbg=-1 cterm=none
-highlight CurrLine      ctermfg=-1 ctermbg=-1 cterm=standout
+highlight CurrLine      ctermfg=-1 ctermbg=-1 cterm=standout,bold
 
 highlight WildMenu      ctermfg=07 ctermbg=08 cterm=underline
 highlight CmdLine       ctermfg=07 ctermbg=-1 cterm=none

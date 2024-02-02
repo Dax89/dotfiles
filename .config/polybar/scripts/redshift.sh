@@ -25,14 +25,14 @@ read_period() {
 
     case "$period" in
         Daytime) echo '%{F#6699cc}%{F-}' ;;
-        Transition) echo '%{F#dfae68}󰖚%{F-}' ;;
-        Night) echo '%{F#db5870}󰖔%{F-}' ;;
-        *) echo '%{F#efefef}%{F-}' ;;
+        Transition) echo '%{F#ffa000}󰖚%{F-}' ;;
+        Night) echo '%{F#e65c75}󰖔%{F-}' ;;
+        *) echo '%{F#f4f1d6}%{F-}' ;;
     esac
 }
 
 if [ -z "$(find_pid)" ]; then
-  echo '%{F#81b24b}%{T2}󰔎%{T-}%{F-}'
+  echo '%{F#96d952}%{T2}󰔎%{T-}%{F-}'
 else
   echo "%{T2}$(read_period)%{T-}"
 fi

@@ -1,13 +1,13 @@
 # Color Scheme
 set $background #282828
-set $foreground #efefef
+set $foreground #f4f1d6
 set $primary    #6699cc
-set $urgent     #db5870
-set $inactive   #dfae68
+set $urgent     #ffa000
+set $inactive   #c371d1
 
 # class                 border      background  text        indicator   child_border
 client.focused          $primary    $primary    $background $primary    $primary
-client.focused_inactive $inactive   $inactive   $background $inactive   $inactive
+client.focused_inactive $inactive   $inactive   $background $inactive   $background
 client.unfocused        $background $background $foreground $background $background
 client.urgent           $urgent     $urgent     $background $urgent     $urgent
 client.placeholder      $primary    $primary    $background $primary    $primary

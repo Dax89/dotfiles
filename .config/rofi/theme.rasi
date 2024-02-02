@@ -26,9 +26,9 @@ configuration {
     spacing: 0;
 
     bg: #282828;
-    fg: #efefef;
+    fg: #f4f1d6;
     primary: #6699cc;
-    secondary: #81b24b;
+    secondary: #52b24b;
 
     background-color: @bg;
     text-color: @fg;

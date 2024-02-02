@@ -34,13 +34,13 @@ is_bluetooth() {
 get_icon() {
     if [ "$(is_bluetooth)" = true ]; then
         if [ "$(is_muted)" = true ]; then
-            echo '%{F#dfae68}%{T2}󰗿%{T-}%{F-}'
+            echo '%{F#ffa000}%{T2}󰗿%{T-}%{F-}'
         else
             echo '%{F#6699cc}%{T2}󰗾%{T-}%{F-}'
         fi
     else
         if [ "$(is_muted)" = true ]; then
-            echo '%{F#dfae68}%{T2}󰖁%{T-}%{F-}'
+            echo '%{F#ffa000}%{T2}󰖁%{T-}%{F-}'
         else
             echo '%{F#6699cc}%{T2}󱄡%{T-}%{F-}'
         fi
@@ -64,7 +64,7 @@ get_name() {
         echo "???"
     else
         name=$(echo "$current" | jq -r '.properties."alsa.name" // .description')
-        echo "%{T4}%{F#98bb6c}$name%{F-}%{T-}"
+        echo "%{T4}%{F#96d952}$name%{F-}%{T-}"
     fi
 }
 
@@ -105,7 +105,7 @@ loop() {
         sleep 1
     else
         while ! pgrep -x pipewire; do
-            echo "%{T4}%{F#81b24b}No Audio%{F-}%{T-}"
+            echo "%{T4}%{F#96d952}No Audio%{F-}%{T-}"
             sleep 1
         done
     fi
