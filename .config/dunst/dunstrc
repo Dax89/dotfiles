@@ -19,7 +19,7 @@
     horizontal_padding = 8
     text_icon_padding = 0
     frame_width = 0
-    frame_color = "#28282b"
+    frame_color = "#282828"
     gap_size = 10
     separator_color = frame
     sort = yes
@@ -60,21 +60,21 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    foreground = "#efefef"
-    background = "#28282b"
-    highlight = "#9ece6a"
+    foreground = "#f4f1d6"
+    background = "#282828"
+    highlight = "#96d952"
     timeout = 3
 
 [urgency_normal]
-    foreground = "#efefef"
-    background = "#28282b"
-    highlight = "#ad8ee6"
+    foreground = "#f4f1d6"
+    background = "#282828"
+    highlight = "#c371d1"
     timeout = 5
 
 [urgency_critical]
-    foreground = "#efefef"
-    background = "#28282b"
-    highlight = "#f7768e"
+    foreground = "#f4f1d6"
+    background = "#282828"
+    highlight = "#e65c75"
     timeout = 10
 
 [stack-volumes]
