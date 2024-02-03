@@ -51,6 +51,7 @@ if [ "$ROFI_RETV" = "1" ]; then
             dunstify Input 'Input change failed' -i "$icon" -r 2000 -u critical
         fi
     done
+else
+    show_audio
 fi
 
-show_audio
