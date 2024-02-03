@@ -2,15 +2,16 @@
 set $background #282828
 set $foreground #f4f1d6
 set $primary    #6699cc
+set $secondary  #e65c75
 set $urgent     #ffa000
 set $inactive   #c371d1
 
 # class                 border      background  text        indicator   child_border
-client.focused          $primary    $primary    $background $primary    $primary
-client.focused_inactive $inactive   $inactive   $background $inactive   $background
-client.unfocused        $background $background $foreground $background $background
-client.urgent           $urgent     $urgent     $background $urgent     $urgent
-client.placeholder      $primary    $primary    $background $primary    $primary
+client.focused          $primary    $primary    $background $secondary $primary
+client.focused_inactive $inactive   $inactive   $background $secondary $background
+client.unfocused        $background $background $foreground $secondary $background
+client.urgent           $urgent     $urgent     $background $secondary $urgent
+client.placeholder      $primary    $primary    $background $secondary $primary
 client.background       $background
 
 # vi: ft=i3config

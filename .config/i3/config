@@ -4,14 +4,12 @@ set $exec exec --no-startup-id
 
 floating_modifier $mod
 
-gaps inner 8
+gaps inner 10
 smart_gaps on
 smart_borders on
-focus_follows_mouse no
+focus_follows_mouse yes
 font pango:sans Bold 10
-
-# Move tiling windows via drag & drop by left-clicking into the title bar,
-# or left-clicking anywhere into the window while holding the floating modifier.
+default_border normal
 tiling_drag modifier titlebar
 
 include $HOME/.config/i3/config.d/*
