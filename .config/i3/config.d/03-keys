@@ -1,5 +1,16 @@
+# Start Rofi
+bindsym XF86Launch1 $exec "rofi -show drun"
+bindsym $mod+d $exec "rofi -show drun"
+bindsym $alt+F2 $exec "rofi -show drun"
+
 # Clipboard tool
 bindsym $mod+c $exec "rofi -modi 'Clipboard:greenclip print' -show Clipboard -theme-str 'mode-switcher { enabled: false; }'"
+
+# Mixer
+bindsym $mod+m $exec "rofi -show Mixer -modi 'Mixer:~/.config/rofi/mixer.sh' -theme-str 'mode-switcher { enabled: false; }'"
+
+# Scratch Pad
+bindsym $mod+x $exec "rofi -show ScratchPad -modi 'ScratchPad:~/.config/rofi/scratchpad.sh rofi' -theme-str 'mode-switcher { enabled: false; }'"
 
 # Screenshots
 bindsym --release Print $exec ~/.config/i3/scripts/screenshot.sh
@@ -36,17 +47,9 @@ bindsym $mod+Shift+b $exec "librewolf"
 bindsym $mod+Shift+s $exec "~/.config/i3/scripts/startup.sh"
 bindsym $mod+Shift+Return $exec "kitty vifm"
 
-# mixer
-bindsym $mod+m $exec "rofi -show Mixer -modi 'Mixer:~/.config/rofi/mixer.sh' -theme-str 'mode-switcher { enabled: false; }'"
-
 # kill focused window
 bindsym --whole-window $mod+button2 kill
 bindsym $mod+Q kill
 bindsym $alt+F4 kill
-
-# start rofi (a program launcher)
-bindsym XF86Launch1 $exec "rofi -show drun"
-bindsym $mod+d $exec "rofi -show drun"
-bindsym $alt+F2 $exec "rofi -show drun"
 
 # vi: ft=i3config

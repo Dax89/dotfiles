@@ -8,7 +8,7 @@ set $inactive   #c371d1
 
 # class                 border      background  text        indicator   child_border
 client.focused          $primary    $primary    $background $secondary $primary
-client.focused_inactive $inactive   $inactive   $background $secondary $background
+client.focused_inactive $inactive   $inactive   $background $secondary $inactive
 client.unfocused        $background $background $foreground $secondary $background
 client.urgent           $urgent     $urgent     $background $secondary $urgent
 client.placeholder      $primary    $primary    $background $secondary $primary
