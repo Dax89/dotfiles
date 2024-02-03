@@ -4,7 +4,7 @@ set $foreground #f4f1d6
 set $primary    #6699cc
 set $secondary  #e65c75
 set $urgent     #ffa000
-set $inactive   #c371d1
+set $inactive   #91919c
 
 # class                 border      background  text        indicator   child_border
 client.focused          $primary    $primary    $background $secondary $primary
