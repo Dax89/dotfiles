@@ -28,9 +28,9 @@ subscribe() {
     print_lastcount
 
     i3-msg -r -t subscribe -m '[ "window" ]' | while read -r x; do
-        spchanged=$(echo "$x" | jq -r '(.change == "move")')
+        moved=$(echo "$x" | jq -r '(.change == "move")')
 
-        if [ "$spchanged" = true ]; then
+        if [ "$moved" = true ]; then
             newcount=$(count)
             [ "$newcount" -eq "$lastcount" ] && return
             lastcount=$newcount
