@@ -4,14 +4,15 @@ highlight Win           ctermfg=15 ctermbg=00 cterm=none
 
 highlight TopLine       ctermfg=04 ctermbg=00 cterm=none
 highlight TopLineSel    ctermfg=03 ctermbg=00 cterm=bold
-highlight StatusLine    ctermfg=00 ctermbg=04 cterm=none
+highlight StatusLine    ctermfg=15 ctermbg=08 cterm=none
 highlight Border        ctermfg=04 ctermbg=00 cterm=none
 
 highlight Selected      ctermfg=01 ctermbg=-1 cterm=none
 highlight CurrLine      ctermfg=-1 ctermbg=-1 cterm=standout,bold
+highlight Otherline     ctermfg=-1 ctermbg=08 cterm=bold
 
-highlight WildMenu      ctermfg=07 ctermbg=08 cterm=underline
-highlight CmdLine       ctermfg=07 ctermbg=-1 cterm=none
+highlight WildMenu      ctermfg=00 ctermbg=04 cterm=none
+highlight CmdLine       ctermfg=15 ctermbg=-1 cterm=none
 highlight ErrorMsg      ctermfg=09 ctermbg=00 cterm=none
 
 highlight Directory     ctermfg=04 ctermbg=-1 cterm=bold
