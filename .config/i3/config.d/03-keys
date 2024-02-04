@@ -1,10 +1,13 @@
+set $terminal kitty
+set $browser librewolf
+
 # Start Rofi
 bindsym XF86Launch1 $exec "rofi -show drun"
 bindsym $mod+d $exec "rofi -show drun"
 bindsym $alt+F2 $exec "rofi -show drun"
 
 # Clipboard tool
-bindsym $mod+c $exec "rofi -modi 'Clipboard:greenclip print' -show Clipboard -theme-str 'mode-switcher { enabled: false; }'"
+bindsym $mod+c $exec "rofi -show Clipboard -modi 'Clipboard:greenclip print' -theme-str 'mode-switcher { enabled: false; }'"
 
 # Mixer
 bindsym $mod+m $exec "rofi -show Mixer -modi 'Mixer:~/.config/rofi/mixer.sh' -theme-str 'mode-switcher { enabled: false; }'"
@@ -40,12 +43,13 @@ bindsym XF86AudioStop $exec playerctl stop
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return $exec "kitty --single-instance"
-bindsym $mod+Shift+i $exec "kitty --class=repl calc"
+bindsym $mod+Return $exec "$terminal --single-instance"
+bindsym $mod+Shift+i $exec "$terminal --class=repl calc"
 bindsym $mod+Shift+n $exec "nvim-qt"
-bindsym $mod+Shift+b $exec "librewolf"
+bindsym $mod+Shift+b $exec "$browser"
+bindsym $mod+Shift+p $exec "$browser --private-window"
 bindsym $mod+Shift+s $exec "~/.config/i3/scripts/startup.sh"
-bindsym $mod+Shift+Return $exec "kitty vifm"
+bindsym $mod+Shift+Return $exec "$terminal vifm"
 
 # kill focused window
 bindsym --whole-window $mod+button2 kill
