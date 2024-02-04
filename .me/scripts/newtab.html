@@ -10,9 +10,11 @@
         }
 
         :root {
-            --background: #f9f7f1;
-            --foreground: #2f2f2f;
-            --primary: #6699cc;
+            --background: #f4f1d6;
+            --foreground: #282828;
+            --primary: #00539f;
+            --border: #6699cc;
+            --logo: #e66000;
         }
 
         html {
@@ -37,8 +39,8 @@
             text-transform: uppercase;
             display: inline-block;
             text-align: center;
-            border-bottom: 2px solid var(--primary);
-            color: #00539f;
+            border-bottom: 2px solid var(--border);
+            color: var(--primary);
         }
 
         a,
@@ -54,7 +56,7 @@
         }
 
         header>.icon {
-            color: #e66000;
+            color: var(--logo);
             font-size: 100px;
         }
 
@@ -111,7 +113,7 @@
                 Memory Alpha
             </a>
         </div>
-        <div style="border: 1px solid var(--primary);">
+        <div style="border: 1px solid var(--border);">
         </div>
         <div class="bookmark-column">
             <a href="https://www.ca-autobank.it/my-ca-autobank" style="color: #308276">
