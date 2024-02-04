@@ -26,6 +26,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # XDG_DATA_DIRS="/var/lib/flatpak/exports/share/applications:$XDG_DATA_DIRS"
 
 # Configure Misc
+export JQ_COLORS="0;37:0;35:0;35:0;33:0;32:1;39:1;39:1;34"
 export UNISON="$XDG_DATA_HOME/unison"
 export GOPATH="$XDG_DATA_HOME/go"
 
