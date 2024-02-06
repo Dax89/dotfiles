@@ -25,7 +25,7 @@ configuration {
     padding: 0;
     spacing: 0;
 
-    bg: #282828;
+    bg: #1f1f1f;
     fg: #f4f1d6;
     primary: #6699cc;
     secondary: #52b24b;

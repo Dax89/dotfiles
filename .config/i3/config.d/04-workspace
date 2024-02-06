@@ -108,17 +108,15 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# change (Vim Style)
+# change focus (Vim Style)
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# split in horizontal orientation
-bindsym $mod+Shift+v split h
-
-# split in vertical orientation
-bindsym $mod+v split v
+# splits
+bindsym $mod+Shift+v split horizontal
+bindsym $mod+v split vertical
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -135,10 +133,10 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus parent
 
 # focus the child container
-bindsym $mod+z focus child
+bindsym $mod+a focus child
 
 # toggle sticky modifier to the selected window
 bindsym $mod+p sticky toggle
