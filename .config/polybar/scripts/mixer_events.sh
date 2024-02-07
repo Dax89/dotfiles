@@ -34,15 +34,15 @@ is_bluetooth() {
 get_icon() {
     if [ "$(is_bluetooth)" = true ]; then
         if [ "$(is_muted)" = true ]; then
-            echo '%{F#ffa000}%{T2}󰗿%{T-}%{F-}'
+            echo '%{F#ffb22e}%{T2}󰗿%{T-}%{F-}'
         else
-            echo '%{F#6699cc}%{T2}󰗾%{T-}%{F-}'
+            echo '%{F#90caf9}%{T2}󰗾%{T-}%{F-}'
         fi
     else
         if [ "$(is_muted)" = true ]; then
-            echo '%{F#ffa000}%{T2}󰖁%{T-}%{F-}'
+            echo '%{F#ffb22e}%{T2}󰖁%{T-}%{F-}'
         else
-            echo '%{F#6699cc}%{T2}󱄡%{T-}%{F-}'
+            echo '%{F#90caf9}%{T2}󱄡%{T-}%{F-}'
         fi
     fi
 }

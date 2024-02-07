@@ -1,10 +1,10 @@
 # Color Scheme
-set $background #1f1f1f
+set $background #202020
 set $foreground #f4f1d6
-set $primary    #6699cc
-set $secondary  #ffa000
-set $urgent     #e65c75
-set $inactive   #91919c
+set $primary    #88b0d7
+set $secondary  #ffb22e
+set $urgent     #ff7575
+set $inactive   #757575
 
 # class                 border      background  text        indicator   child_border
 client.focused          $primary    $primary    $background $secondary $primary

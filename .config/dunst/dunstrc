@@ -19,7 +19,7 @@
     horizontal_padding = 8
     text_icon_padding = 0
     frame_width = 0
-    frame_color = "#282828"
+    frame_color = "#202020"
     gap_size = 10
     separator_color = frame
     sort = yes
@@ -61,20 +61,20 @@
 
 [urgency_low]
     foreground = "#f4f1d6"
-    background = "#282828"
+    background = "#202020"
     highlight = "#96d952"
     timeout = 3
 
 [urgency_normal]
     foreground = "#f4f1d6"
-    background = "#282828"
-    highlight = "#c371d1"
+    background = "#202020"
+    highlight = "#e28ee6"
     timeout = 5
 
 [urgency_critical]
     foreground = "#f4f1d6"
-    background = "#282828"
-    highlight = "#e65c75"
+    background = "#202020"
+    highlight = "#ff7575"
     timeout = 10
 
 [stack-volumes]

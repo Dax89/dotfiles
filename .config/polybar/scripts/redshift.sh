@@ -24,9 +24,9 @@ read_period() {
     period=$(redshift -p 2>&1 /dev/null | awk '/Period:/{print $2}')
 
     case "$period" in
-        Daytime) echo '%{F#6699cc}%{F-}' ;;
-        Transition) echo '%{F#ffa000}󰖚%{F-}' ;;
-        Night) echo '%{F#e65c75}󰖔%{F-}' ;;
+        Daytime) echo '%{F#90caf9}%{F-}' ;;
+        Transition) echo '%{F#ffb22e}󰖚%{F-}' ;;
+        Night) echo '%{F#ff7575}󰖔%{F-}' ;;
         *) echo '%{F#f4f1d6}%{F-}' ;;
     esac
 }
