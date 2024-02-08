@@ -17,6 +17,14 @@ get_icon() {
     echo "<span color='white' face='Symbols Nerd Font Mono'>$1</span>"
 }
 
+get_theme_icon() {
+    if [ "$1" = "source" ]; then
+        echo "microphone-sensitivity-high-symbolic"
+    else
+        echo "audio-volume-high-symbolic"
+    fi
+}
+
 print_entries() {
     entries=$1 selentry=$2 icon=$3 type=$4 index=$5
     eval "${type}idx"=$(($(echo "$entries" | jq -r 'map(.name == "'"$selentry"'") | index(true)') + index))
@@ -48,21 +56,21 @@ show_audio() {
 }
 
 switch_device() {
-    echo "$ROFI_INFO" | jq -r '.name,.type,.id,.icon' | while read -r name &&
-                                                              read -r type && 
-                                                              read -r id &&
-                                                              read -r icon; do
+    echo "$ROFI_INFO" | jq -r '.name,.type,.id' | while read -r name &&
+                                                        read -r type && 
+                                                        read -r id; do
         pactl set-default-"$type" "$id"
         current=$(pactl get-default-"$type")
+        themeicon=$(get_theme_icon "$type")
 
         if [ "$type" = 'sink' ]; then
             if [ "$id" = "$current" ]; then
-                dunstify Output "$name" -i "$icon" -r 2000 -u low
+                dunstify Output "$name" -i "$themeicon" -r 2000 -u low
             else
                 dunstify Output 'Output change failed' -i "$icon" -r 2000 -u critical
             fi
         elif [ "$id" = "$current" ]; then
-            dunstify Input "$name" -i "$icon" -r 2000 -u low
+            dunstify Input "$name" -i "$themeicon" -r 2000 -u low
         else
             dunstify Input 'Input change failed' -i "$icon" -r 2000 -u critical
         fi
@@ -72,19 +80,16 @@ switch_device() {
 }
 
 toggle_device_mute() {
-    echo "$ROFI_INFO" | jq -r '.name,.type,.id,.icon' | while read -r name &&
-                                                              read -r type && 
-                                                              read -r id &&
-                                                              read -r icon; do
+    echo "$ROFI_INFO" | jq -r '.type,.id' | while read -r type && 
+                                                  read -r id; do
+                                                 
         pactl set-"$type"-mute "$id" "toggle"
     done
 }
 
 change_device_volume() {
-    echo "$ROFI_INFO" | jq -r '.name,.type,.id,.icon' | while read -r name &&
-                                                              read -r type && 
-                                                              read -r id &&
-                                                              read -r icon; do
+    echo "$ROFI_INFO" | jq -r '.type,.id' | while read -r type && 
+                                                  read -r id; do 
         pactl set-"$type"-mute "$id" "0"
         pactl set-"$type"-volume "$id" "$1"
     done
