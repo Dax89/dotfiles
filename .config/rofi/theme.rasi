@@ -71,16 +71,18 @@ element {
 
 element-icon {
     padding: 4px 10px;
+    size: 24px;
+}
+
+element-text {
+    padding: 4px 0;
+    vertical-align: 0.5;
 }
 
 element-icon selected,
 element-text selected {
     background-color: @primary;
     text-color: @bg;
-}
-
-element-text {
-    padding: 4px 0;
 }
 
 element-icon active,
