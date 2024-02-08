@@ -11,6 +11,7 @@ bindsym $mod+c $exec "rofi -show Clipboard -modi 'Clipboard:greenclip print' -th
 
 # Mixer
 bindsym $mod+m $exec "rofi -show Mixer -modi 'Mixer:~/.config/rofi/mixer.sh' -theme-str 'mode-switcher { enabled: false; }'"
+bindsym $mod+Shift+m $exec ~/.config/rofi/app_mixer.sh
 
 # Scratch Pad
 bindsym $mod+x $exec "rofi -show ScratchPad -modi 'ScratchPad:~/.config/rofi/scratchpad.sh rofi' -theme-str 'mode-switcher { enabled: false; }'"
