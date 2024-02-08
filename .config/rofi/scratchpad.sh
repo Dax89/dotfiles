@@ -2,11 +2,15 @@
 
 lastcount=-1
 
+get_icon() {
+    echo "<span color='white' face='Symbols Nerd Font Mono'></span>"
+}
+
 rofi() {
     i3-msg -t get_tree | jq -r \
         'recurse(.nodes[]) | select(.name == "__i3_scratch") | .floating_nodes[].nodes[] | 
         .window_properties.class + " — " + .name + "\u0000" +
-        "icon\u001fwindow_list\u001f" +
+        "icon\u001f'"$(get_icon)"'\u001f" +
         "info\u001f" + (.window | tostring)'
 }
 
