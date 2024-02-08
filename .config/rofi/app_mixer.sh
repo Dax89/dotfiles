@@ -52,9 +52,9 @@ list_clients | while read -r sink && \
     sink=$(echo "$sink" | awk -F '#' '{print $2}')
 
     if [ "$mute" = "yes" ]; then
-        printf "MUTE   "
+        printf "MUTE — "
     else
-        printf "%s%%   " "$volume"
+        printf "%s%% — " "$volume"
     fi
 
     printf "%s | %s\0" "$appname" "$title"
