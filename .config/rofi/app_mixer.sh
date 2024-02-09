@@ -12,13 +12,13 @@ if [ "$1" != "rofi" ]; then
 fi
 
 get_icon() {
-    icon=$(grep -Ri "Icon=$1" /usr/share/applications/*.desktop | awk -F '=' '{print $2}')
+    icon=$(grep -Ri "^Icon=$1\$" /usr/share/applications/*.desktop | awk -F '=' '{print $2}')
     [ -z "$icon" ] && icon="<span color='white' face='Symbols Nerd Font Mono'>󰓃</span>"
     echo "$icon"
 }
 
 list_clients() {
-    pactl list sink-inputs | grep -E 'Sink Input #|application.name = "|media.name|Volume|Mute'
+    pactl list sink-inputs | grep -E 'Sink Input #|application.name = "|application.process.binary = "|media.name|Volume|Mute'
 }
 
 change_volume() {
@@ -38,6 +38,7 @@ list_clients | while read -r sink && \
                      read -r mute && \
                      read -r volume && \
                      read -r appname && 
+                     read -r appbinary && 
                      read -r title; do
     volume=$(echo "$volume" | awk -F '/' '{
         left = int($2)
@@ -48,6 +49,20 @@ list_clients | while read -r sink && \
 
     mute=$(echo "$mute" | awk -F ':' '{print $2}' | xargs)
     appname=$(echo "$appname" | awk -F '=' '{print $2}' | xargs)
+    appbinary=$(echo "$appbinary" | awk -F '=' '{print $2}' | xargs)
+
+    # Detect 'wine' process
+    case "$appbinary" in
+        wine*-preloader) appbinary="wine" ;;
+        *) ;;
+    esac
+
+    # Strip '.exe' extension
+    case "$appname" in
+        *.exe) appname=${appname%.*} ;;
+        *) ;;
+    esac
+
     title=$(echo "$title" | awk -F '=' '{print $2}' | xargs)
     sink=$(echo "$sink" | awk -F '#' '{print $2}')
 
@@ -58,7 +73,7 @@ list_clients | while read -r sink && \
     fi
 
     printf "%s | %s\0" "$appname" "$title"
-    printf "icon\x1f%s\x1f" "$(get_icon "$appname")"
+    printf "icon\x1f%s\x1f" "$(get_icon "$appbinary")"
     printf "info\x1f%s\n" "$sink"
 done
 
