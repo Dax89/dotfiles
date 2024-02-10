@@ -18,7 +18,7 @@ get_icon() {
 }
 
 list_clients() {
-    pactl list sink-inputs | grep -E 'Sink Input #|application.name = "|application.process.binary = "|media.name|Volume|Mute'
+    pactl list sink-inputs | grep -E 'Sink Input #|application.name = "|application.process.binary = "|media.name = "|Volume: |Mute: '
 }
 
 change_volume() {
