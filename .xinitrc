@@ -37,5 +37,10 @@ if ! has_systemd; then
     pipewire &
 fi
 
+# Keep monitor active
+xset -dpms &
+xset s off &
+
+# Faster repeat rate
 xset r rate 250 50 &
 exec i3
