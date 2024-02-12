@@ -29,8 +29,8 @@ change_volume() {
 case "$ROFI_RETV" in
     25) pactl set-sink-input-volume "$ROFI_INFO" "100%" ;;
     26) pactl set-sink-input-mute "$ROFI_INFO" "toggle" ;;
-    27) change_volume "-1%" ;;
-    28) change_volume "+1%" ;;
+    27) change_volume "-5%" ;;
+    28) change_volume "+5%" ;;
     *) ;;
 esac
 
@@ -63,7 +63,11 @@ list_clients | while read -r sink && \
         *) ;;
     esac
 
-    title=$(echo "$title" | awk -F '=' '{print $2}' | xargs)
+    title=$(echo "$title" | awk '{
+        idx = index($0, "=");
+        print substr($0, idx + 1);
+    }' | xargs)
+
     sink=$(echo "$sink" | awk -F '#' '{print $2}')
 
     if [ "$mute" = "yes" ]; then

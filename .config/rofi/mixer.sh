@@ -98,8 +98,8 @@ change_device_volume() {
 case "$ROFI_RETV" in
     1)  switch_device ;;
     26) toggle_device_mute ;;
-    27) change_device_volume "-1%" ;;
-    28) change_device_volume "+1%" ;;
+    27) change_device_volume "-5%" ;;
+    28) change_device_volume "+5%" ;;
     *) ;;
 esac
 
