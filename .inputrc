@@ -1,3 +1,4 @@
+# Enable Home/End keys and more
 "\e[1~": beginning-of-line
 "\e[4~": end-of-line
 "\e[7~": beginning-of-line
@@ -7,3 +8,8 @@
 "\e[H": beginning-of-line
 "\e[F": end-of-line
 "\e[3~": delete-char
+
+# Alt+s Prepend sudo
+"\es": "\C-asudo \C-e"
+# Alt+l List directory
+"\el": "\C-e\C-uls -l\C-m"
