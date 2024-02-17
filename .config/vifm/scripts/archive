@@ -140,46 +140,46 @@ create_archive() {
     case "$ext" in
         zip)
             if [ -n "$password" ]; then
-                zip -r -P "$password" "$output" "$@"
+                echo "$@" | xargs zip -r -P "$password" "$output"
             else
-                zip -r "$output" "$@"
+                echo "$@" | xargs zip -r "$output"
             fi
             ;;
 
         rar)
             if [ -n "$password" ]; then
-                rar -r -hp "$password" a -r "$output" "$@"
+                echo "$@" | xargs rar -r -hp "$password" a -r "$output"
             else 
-                rar -r a -r "$output" "$@"
+                echo "$@" | xargs rar -r a -r "$output"
             fi
             ;;
 
         7z)
             if [ -n "$password" ]; then 
-                7z -P"$password" a -r "$output" "$@"
+                echo "$@" | xargs 7z -P"$password" a "$output"
             else
-                7z a -r "$output" "$@"
+                echo "$@" | xargs 7z a "$output"
             fi
             ;;
 
         tar)
             [ -n "$password" ] && unsupported_password "$ext"
-            tar cvf "$output" "$@"
+            echo "$@" | xargs tar cvf "$output"
             ;;
 
         xz)
             [ -n "$password" ] && unsupported_password "$ext"
-            tar cvJ "$output" "$@"
+            echo "$@" | xargs tar cvJ "$output"
             ;;
 
         gz)
             [ -n "$password" ] && unsupported_password "$ext"
-            tar cvfz "$output" "$@"
+            echo "$@" | xargs tar cvfz "$output"
             ;;
 
         bz2)
             [ -n "$password" ] && unsupported_password "$ext"
-            tar cvfj "$output" "$@"
+            echo "$@" | xargs tar cvfj "$output"
             ;;
 
         *) unsupported_archive_type "$ext" ;;
