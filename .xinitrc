@@ -22,6 +22,9 @@ fi
 
 [ -f ~/.bash_profile ] && . "$HOME"/.bash_profile
 
+# Start OpenRGB
+"$HOME"/.me/scripts/openrgb.sh &
+
 # Start localization service
 if [ -f /usr/lib/geoclue-2.0/demos/agent ]; then
     /usr/lib/geoclue-2.0/demos/agent &
@@ -31,10 +34,11 @@ fi
 
 execute_if picom --config "$HOME"/.config/picom/picom.conf
 execute_if dunst --config "$HOME"/.config/dunst/dunstrc
+execute_if greenclip daemon > /dev/null
 execute_if redshift
 
 if ! has_systemd; then
-    pipewire &
+    execute_if pipewire
 fi
 
 # Keep monitor active

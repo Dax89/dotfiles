@@ -1,4 +1,4 @@
-# File Manager
+# File Manager DBus Service
 $exec filemanagerd
 
 # Device Manager
@@ -7,18 +7,8 @@ $exec udiskie --tray
 # Bluetooth Manager
 $exec blueman-applet
 
-# Clipboard Tool
-$exec greenclip daemon > /dev/null
-
 # Wallpaper
 $exec nitrogen --restore
-
-# OpenRGB
-$exec ~/.me/scripts/openrgb.sh
-
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-$exec dex --autostart --environment i3
 
 # Polybar
 $exec ~/.config/polybar/polybar.sh
