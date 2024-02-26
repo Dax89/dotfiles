@@ -36,10 +36,7 @@ execute_if picom --config "$HOME"/.config/picom/picom.conf
 execute_if dunst --config "$HOME"/.config/dunst/dunstrc
 execute_if greenclip daemon > /dev/null
 execute_if redshift
-
-if ! has_systemd; then
-    execute_if pipewire
-fi
+[ ! "$(has_systemd)" ] && execute_if pipewire
 
 # Keep monitor active
 xset -dpms &
