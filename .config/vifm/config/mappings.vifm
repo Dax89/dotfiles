@@ -2,6 +2,9 @@
 " vim: filetype=vim:
 "
 
+" Backspace moves back
+nnoremap <BS> h
+
 " Move between panes
 nnoremap <tab> <C-w>w
 
