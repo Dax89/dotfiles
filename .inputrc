@@ -13,3 +13,5 @@
 "\es": "\C-asudo \C-e"
 # Alt+l List directory
 "\el": "\C-e\C-uls -l\C-m"
+# Alt+f Append fzf
+"\ef": "\C-e | fzf"
