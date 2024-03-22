@@ -64,5 +64,6 @@ if [ ! -d /home/"$user"/.me ]; then
 
     su "$user" << EOF
 . ./get_dotfiles.sh
+. ./setup_xbps.sh
 EOF
 fi

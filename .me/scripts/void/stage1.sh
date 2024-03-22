@@ -18,6 +18,10 @@ if [ -z "$DISK" ]; then
     exit 2
 fi
 
+# Install basic requirements
+xbps-install -u xbps
+xbps-install wget
+
 mkfs.ext4 "$DISK"2
 mount "$DISK"2 /mnt/
 
@@ -74,6 +78,8 @@ echo "********* BEFORE REBOOT *********"
 
 if [ -f stage2.sh ]; then
     mv ./stage2.sh /mnt/root
+    mv ./get_dotfiles.sh /mnt/root
+    mv ./setup_xbps.sh.sh /mnt/root
     chmod +x /mnt/root/stage2.sh
 fi
 
