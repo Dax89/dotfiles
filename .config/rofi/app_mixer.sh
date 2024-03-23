@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$1" != "rofi" ]; then
     rofi -show "App Mixer"  \

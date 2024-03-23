@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 check_command() {
     printf "Checking \e[0;36m%s\e[0m -> " "$1"

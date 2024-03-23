@@ -1,5 +1,5 @@
 for_window [class="TelegramDesktop"] floating enable sticky enable
-for_window [class="thunderbird"] floating enable sticky enable
+for_window [class="Thunderbird"] floating enable sticky enable
 for_window [class="repl"] floating enable sticky enable
 for_window [class="discord"] floating enable
 for_window [class="vlc"] floating enable

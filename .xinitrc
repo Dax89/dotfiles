@@ -3,13 +3,29 @@
 execute_if() {
     cmd=$1; shift
 
-    if which "$cmd" > /dev/null && ! pgrep -f "$cmd" > /dev/null; then
+    if command -v "$cmd" > /dev/null && ! pgrep -f "$cmd" > /dev/null; then
         "$cmd" "$@" &
     fi
 }
 
 has_systemd() {
     command -v systemctl > /dev/null
+}
+
+setup_services() {
+    # Start localization service
+    if [ -f /usr/lib/geoclue-2.0/demos/agent ]; then
+        /usr/lib/geoclue-2.0/demos/agent &
+    elif [ -f /usr/libexec/geoclue-2.0/demos/agent ]; then
+        /usr/libexec/geoclue-2.0/demos/agent &
+    fi
+
+    [ ! "$(has_systemd)" ] && execute_if pipewire
+    execute_if picom --config "$HOME"/.config/picom/picom.conf
+    execute_if dunst --config "$HOME"/.config/dunst/dunstrc
+    execute_if greenclip daemon > /dev/null
+    execute_if redshift
+    execute_if protonmail-bridge --noninteractive
 }
 
 # Source initialization scripts
@@ -24,19 +40,7 @@ fi
 
 # Start OpenRGB
 "$HOME"/.me/scripts/openrgb.sh &
-
-# Start localization service
-if [ -f /usr/lib/geoclue-2.0/demos/agent ]; then
-    /usr/lib/geoclue-2.0/demos/agent &
-elif [ -f /usr/libexec/geoclue-2.0/demos/agent ]; then
-    /usr/libexec/geoclue-2.0/demos/agent &
-fi
-
-execute_if picom --config "$HOME"/.config/picom/picom.conf
-execute_if dunst --config "$HOME"/.config/dunst/dunstrc
-execute_if greenclip daemon > /dev/null
-execute_if redshift
-[ ! "$(has_systemd)" ] && execute_if pipewire
+setup_services
 
 # Keep monitor active
 xset -dpms &
