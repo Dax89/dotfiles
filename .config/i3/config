@@ -7,7 +7,7 @@ floating_modifier $mod
 gaps inner 10
 smart_gaps on
 smart_borders on
-focus_follows_mouse no
+focus_follows_mouse yes
 font pango:sans Bold 10
 default_border normal
 tiling_drag modifier titlebar
