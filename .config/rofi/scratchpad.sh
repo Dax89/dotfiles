@@ -32,7 +32,7 @@ subscribe() {
     print_lastcount
 
     i3-msg -r -t subscribe -m '[ "window" ]' | while read -r x; do
-        moved=$(echo "$x" | jq -r '(.change == "move")')
+        moved=$(echo "$x" | jq '(.change == "move")' 2>/dev/null)
 
         if [ "$moved" = true ]; then
             newcount=$(count)
@@ -44,7 +44,7 @@ subscribe() {
 }
 
 if [ "$ROFI_RETV" = "1" ]; then
-    i3-msg "[id=$ROFI_INFO] scratchpad show" > /dev/null
+    i3-msg "[id=$ROFI_INFO] scratchpad show" >/dev/null
 elif [ "$1" = "rofi" ]; then
     rofi
 else
