@@ -10,6 +10,7 @@ for_window [class="Vampire_Survivors"] floating enable
 for_window [class="^VirtualBox"] floating enable
 for_window [class="^steam"] floating enable
 for_window [class="^Blueman"] floating enable
+for_window [class="^Virt-manager"] floating enable
 for_window [class="librewolf" window_role="page-info"] floating enable
 for_window [class="librewolf" window_role="Organizer"] floating enable
 for_window [class="librewolf" window_role="PictureInPicture"] sticky enable
