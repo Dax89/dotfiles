@@ -41,10 +41,10 @@ fileviewer {*.torrent},<application/x-bittorrent>
 
 " Archives
 fileviewer 
-            \{*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg}
+            \{*.apk,*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg}
             \{*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst},
             \{*.rar},{*.7z},
-            \<application/java-archive>,<application/zip>,<application/x-rar>,
+            \<application/vnd.android.package-archive>,<application/java-archive>,<application/zip>,<application/x-rar>,
             \<application/x-xz>,<application/x-gz>,<application/x-7z-compressed>,
             \<application/x-tar>,<application/x-bz2>,<application/gzip>,<application/bzip2>
             \ $VIFM/scripts/archive l %"d %"f | less

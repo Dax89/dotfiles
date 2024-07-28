@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Supported Extensions:
-# .jar, zip, rar, 7z, tar, tar.xz, tar.gz, tar.bz2
+# apk, jar, zip, rar, 7z, tar, tar.xz, tar.gz, tar.bz2
 
 usage() {
     echo "Usage:
@@ -64,8 +64,8 @@ check_extracted_folder() {
     fi
 
     case "$name" in
-        *.tar) [ -d "$name" ] && mv -f "$name" "${name%*.tar}" ;;
-        *) ;;
+    *.tar) [ -d "$name" ] && mv -f "$name" "${name%*.tar}" ;;
+    *) ;;
     esac
 }
 
@@ -77,19 +77,19 @@ list_archive() {
     mime=$(get_mimetype "$arg")
 
     case "$mime" in
-        application/java-archive | application/zip) unzip -l "$arg" ;;
-        application/x-rar) unrar l "$arg" ;;
-        application/x-7z-compressed) 7z l "$arg" ;;
+    application/vnd.android.package-archive | application/java-archive | application/zip) unzip -l "$arg" ;;
+    application/x-rar) unrar l "$arg" ;;
+    application/x-7z-compressed) 7z l "$arg" ;;
 
-        application/x-tar | application/x-xz | application/x-gz | \
+    application/x-tar | application/x-xz | application/x-gz | \
         application/x-bz2 | application/gzip | application/x-bzip2)
-            tar tf "$arg" | tree --fromfile -C --dirsfirst
-            ;;
+        tar tf "$arg" | tree --fromfile -C --dirsfirst
+        ;;
 
-        *)
-            echo "Cannot list $arg files $mime"
-            exit 1
-            ;;
+    *)
+        echo "Cannot list $arg files $mime"
+        exit 1
+        ;;
     esac
 }
 
@@ -99,17 +99,17 @@ extract_archive() {
     tmpdir=$(mktemp -d)
 
     case "$mime" in
-        application/java-archive | application/zip) unzip -o -d "$tmpdir" "$arg" ;;
-        application/x-rar) unrar x "$arg" "$tmpdir" ;;
-        application/x-7z-compressed) 7z x "$arg" "-o$tmpdir" ;;
-        application/x-tar | application/x-xz) tar xvf "$arg" "-C$tmpdir" ;;
-        application/x-gz | application/gzip) tar zxvf "$arg" "-C$tmpdir" ;;
-        application/x-bz2 | application/x-bzip2) tar jxvf "$arg" "-C$tmpdir" ;;
+    application/vnd.android.package-archive | application/java-archive | application/zip) unzip -o -d "$tmpdir" "$arg" ;;
+    application/x-rar) unrar x "$arg" "$tmpdir" ;;
+    application/x-7z-compressed) 7z x "$arg" "-o$tmpdir" ;;
+    application/x-tar | application/x-xz) tar xvf "$arg" "-C$tmpdir" ;;
+    application/x-gz | application/gzip) tar zxvf "$arg" "-C$tmpdir" ;;
+    application/x-bz2 | application/x-bzip2) tar jxvf "$arg" "-C$tmpdir" ;;
 
-        *)
-            echo "ERROR: cannot extract '$arg' ($mime)"
-            exit 1
-            ;;
+    *)
+        echo "ERROR: cannot extract '$arg' ($mime)"
+        exit 1
+        ;;
     esac
 
     name="${arg%.*}"
@@ -124,7 +124,7 @@ create_archive() {
     fi
 
     # Disable globbing to make the word-splitting below safe.
-    set -f 
+    set -f
 
     # Set the argument list to the word-splitted string.
     # This removes all leading/trailing white-space and reduces
@@ -138,51 +138,51 @@ create_archive() {
     ext="${output##*.}"
 
     case "$ext" in
-        zip)
-            if [ -n "$password" ]; then
-                echo "$@" | xargs zip -r -P "$password" "$output"
-            else
-                echo "$@" | xargs zip -r "$output"
-            fi
-            ;;
+    zip)
+        if [ -n "$password" ]; then
+            echo "$@" | xargs zip -r -P "$password" "$output"
+        else
+            echo "$@" | xargs zip -r "$output"
+        fi
+        ;;
 
-        rar)
-            if [ -n "$password" ]; then
-                echo "$@" | xargs rar -r -hp "$password" a -r "$output"
-            else 
-                echo "$@" | xargs rar -r a -r "$output"
-            fi
-            ;;
+    rar)
+        if [ -n "$password" ]; then
+            echo "$@" | xargs rar -r -hp "$password" a -r "$output"
+        else
+            echo "$@" | xargs rar -r a -r "$output"
+        fi
+        ;;
 
-        7z)
-            if [ -n "$password" ]; then 
-                echo "$@" | xargs 7z -P"$password" a "$output"
-            else
-                echo "$@" | xargs 7z a "$output"
-            fi
-            ;;
+    7z)
+        if [ -n "$password" ]; then
+            echo "$@" | xargs 7z -P"$password" a "$output"
+        else
+            echo "$@" | xargs 7z a "$output"
+        fi
+        ;;
 
-        tar)
-            [ -n "$password" ] && unsupported_password "$ext"
-            echo "$@" | xargs tar cvf "$output"
-            ;;
+    tar)
+        [ -n "$password" ] && unsupported_password "$ext"
+        echo "$@" | xargs tar cvf "$output"
+        ;;
 
-        xz)
-            [ -n "$password" ] && unsupported_password "$ext"
-            echo "$@" | xargs tar cvJ "$output"
-            ;;
+    xz)
+        [ -n "$password" ] && unsupported_password "$ext"
+        echo "$@" | xargs tar cvJ "$output"
+        ;;
 
-        gz)
-            [ -n "$password" ] && unsupported_password "$ext"
-            echo "$@" | xargs tar cvfz "$output"
-            ;;
+    gz)
+        [ -n "$password" ] && unsupported_password "$ext"
+        echo "$@" | xargs tar cvfz "$output"
+        ;;
 
-        bz2)
-            [ -n "$password" ] && unsupported_password "$ext"
-            echo "$@" | xargs tar cvfj "$output"
-            ;;
+    bz2)
+        [ -n "$password" ] && unsupported_password "$ext"
+        echo "$@" | xargs tar cvfj "$output"
+        ;;
 
-        *) unsupported_archive_type "$ext" ;;
+    *) unsupported_archive_type "$ext" ;;
     esac
 }
 
@@ -191,15 +191,21 @@ output=""
 
 while getopts ":p:o:" opt; do
     case $opt in
-        p)  password="$OPTARG" ;;
-        o)  output="$OPTARG" ;;
-        :)  echo "missing argument"; exit 2 ;;
-        \?) echo "invalid option '$opt'"; exit 2 ;;
+    p) password="$OPTARG" ;;
+    o) output="$OPTARG" ;;
+    :)
+        echo "missing argument"
+        exit 2
+        ;;
+    \?)
+        echo "invalid option '$opt'"
+        exit 2
+        ;;
     esac
 done
 
 # Filter out arguments that start with "-" and move them.
-shift "$((OPTIND - 1))" 
+shift "$((OPTIND - 1))"
 
 mode=$1
 workdir=$2
@@ -209,8 +215,11 @@ arg=$3
 cd "$workdir" || invalid_workdir
 
 case "$mode" in
-    l) list_archive ;;
-    x) extract_archive ;;
-    c) create_archive "$arg" ;;
-    *) usage; exit 2 ;;
+l) list_archive ;;
+x) extract_archive ;;
+c) create_archive "$arg" ;;
+*)
+    usage
+    exit 2
+    ;;
 esac
