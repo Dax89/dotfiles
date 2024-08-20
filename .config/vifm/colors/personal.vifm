@@ -17,6 +17,7 @@ highlight ErrorMsg      ctermfg=09 ctermbg=00 cterm=none
 
 highlight Directory     ctermfg=04 ctermbg=-1 cterm=bold
 highlight Link          ctermfg=10 ctermbg=-1 cterm=none
+highlight HardLink      ctermfg=14 ctermbg=-1 cterm=none
 highlight BrokenLink    ctermfg=01 ctermbg=-1 cterm=none
 highlight Socket        ctermfg=11 ctermbg=-1 cterm=none
 highlight Device        ctermfg=14 ctermbg=-1 cterm=none
