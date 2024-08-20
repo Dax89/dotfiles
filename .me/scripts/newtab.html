@@ -2,17 +2,13 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="New Tab Page">
+    <meta name="title" content="New Tab">
+    <title>New Tab</title>
+
     <style>
-        @media only screen and (max-width: 960px) {
-            body>.bookmark-container {
-                flex-direction: column;
-            }
-
-            body>.bookmark-container>.bookmark-column {
-                padding: 12px 0 12px 0;
-            }
-        }
-
         :root {
             --background: #f4f1d6;
             --foreground: #282828;
@@ -21,30 +17,12 @@
             --logo: #e66000;
         }
 
-        html {
-            height: 100%;
-            display: table;
-            margin: auto;
-        }
-
+        html,
         body {
-            height: 100%;
-            display: table-cell;
-            vertical-align: middle;
             background-color: var(--background);
             color: var(--foreground);
-            padding: 0;
+            height: 100%;
             margin: 0;
-        }
-
-        header {
-            font-weight: 900;
-            font-size: 80px;
-            text-transform: uppercase;
-            display: inline-block;
-            text-align: center;
-            border-bottom: 2px solid var(--border);
-            color: var(--primary);
         }
 
         a,
@@ -59,19 +37,40 @@
             text-decoration: underline;
         }
 
-        header>.icon {
-            color: var(--logo);
-            font-size: 100px;
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 520px;
+            margin: auto;
         }
 
-        .icon {
+        .separator {
+            border: 1px solid var(--border);
+        }
+
+        .header {
+            font-weight: 900;
+            font-size: 5rem;
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+            border-bottom: 2px solid var(--border);
+            color: var(--primary);
+        }
+
+        .header__icon {
             font-family: monospace;
             padding-right: 6px;
+            color: var(--logo);
+            font-size: 5.5rem;
         }
 
-        .bookmark-container {
+        .bookmarks {
             font-family: monospace;
-            font-size: 20px;
+            font-size: 1.2rem;
             margin-top: 40px;
             display: flex;
             flex-direction: row;
@@ -81,87 +80,136 @@
             text-align: center;
         }
 
-        .bookmark-column {
+        .bookmarks__list {
             text-align: left;
+            list-style-type: none;
             padding: 0 12px 0 12px;
+            margin: 0;
+        }
+
+        @media only screen and (max-width: 960px) {
+            .bookmarks {
+                flex-direction: column;
+            }
+
+            .bookmarks__list {
+                padding: 12px 0 12px 0;
+            }
         }
     </style>
-    <title>New Tab</title>
 </head>
 
 <body>
-    <header>
-        <span class="icon"></span>
-        New Tab
-    </header>
-    <div class="bookmark-container">
-        <div class="bookmark-column">
-            <a href="https://steamcommunity.com/id/dax89" style="color: #000">
-                Steam
-            </a>
-            <a href="https://www.youtube.com/feed/subscriptions" style="color: #f00">
-                YouTube
-            </a>
-            <a href="https://open.spotify.com" style="color: #1db954">
-                Spotify
-            </a>
-            <a href="https://www.3bmeteo.com/meteo/macomer" style="color: #3876b2">
-                3BMeteo
-            </a>
-            <a href="https://twitter.com" style="color: #1da1f2;">
-                Twitter
-            </a>
-            <a href="https://reddit.com" style="color: #ff4500">
-                Reddit
-            </a>
-            <a href="https://linkedin.com" style="color: #0a66c2">
-                Linkedin
-            </a>
-        </div>
-        <div style="border: 1px solid var(--border);">
-        </div>
-        <div class="bookmark-column">
-            <a href="https://www.patreon.com" style="color: #052d49">
-                Patreon
-            </a>
-            <a href="https://www.aliexpress.com" style="color: #e02c04">
-                AliExpress
-            </a>
-            <a href="https://www.amazon.it" style="color: #146eb4">
-                Amazon
-            </a>
-            <a href="https://www.ebay.it" style="color: #f5af02">
-                eBay
-            </a>
-            <a href="https://memory-alpha.fandom.com" style="color: #a566dd">
-                Memory Alpha
-            </a>
-            <a href="https://www.pinterest.it" style="color: #e60023">
-                Pinterest
-            </a>
-        </div>
-        <div style="border: 1px solid var(--border);">
-        </div>
-        <div class="bookmark-column">
-            <a href="https://github.com" style="color: #333">
-                GitHub
-            </a>
-            <a href="https://chatgpt.com" style="color: #109e7b">
-                Chat GPT
-            </a>
-            <a href="https://godbolt.org" style="color: #269c40">
-                Compiler Explorer
-            </a>
-            <a href="https://redasm.io" style="color: #c03131">
-                REDasm
-            </a>
-            <a href="https://colorizer.org" style="color: #16344e">
-                Colorizer
-            </a>
-            <a href="https://webaim.org/resources/contrastchecker" style="color: #b8000a">
-                Contrast Checker
-            </a>
-        </div>
+    <div class="container">
+        <header class="header">
+            <span class="header__icon"></span>
+            NEW TAB
+        </header>
+        <main class="bookmarks">
+            <ul class="bookmarks__list">
+                <li>
+                    <a href="https://steamcommunity.com/id/dax89" style="color: #000">
+                        Steam
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/feed/subscriptions" style="color: #f00">
+                        YouTube
+                    </a>
+                </li>
+                <li>
+                    <a href="https://open.spotify.com" style="color: #1db954">
+                        Spotify
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.3bmeteo.com/meteo/macomer" style="color: #3876b2">
+                        3BMeteo
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitter.com" style="color: #1da1f2;">
+                        Twitter
+                    </a>
+                </li>
+                <li>
+                    <a href="https://reddit.com" style="color: #ff4500">
+                        Reddit
+                    </a>
+                </li>
+                <li>
+                    <a href="https://linkedin.com" style="color: #0a66c2">
+                        Linkedin
+                    </a>
+                </li>
+            </ul>
+            <div class="separator"></div>
+            <ul class="bookmarks__list">
+                <li>
+                    <a href="https://www.patreon.com" style="color: #052d49">
+                        Patreon
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.aliexpress.com" style="color: #e02c04">
+                        AliExpress
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.amazon.it" style="color: #146eb4">
+                        Amazon
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.ebay.it" style="color: #f5af02">
+                        eBay
+                    </a>
+                </li>
+                <li>
+                    <a href="https://memory-alpha.fandom.com" style="color: #a566dd">
+                        Memory Alpha
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.pinterest.it" style="color: #e60023">
+                        Pinterest
+                    </a>
+                </li>
+            </ul>
+            <div class="separator"></div>
+            <ul class="bookmarks__list">
+                <li>
+                    <a href="https://github.com" style="color: #333">
+                        GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="https://chatgpt.com" style="color: #109e7b">
+                        Chat GPT
+                    </a>
+                </li>
+                <li>
+                    <a href="https://godbolt.org" style="color: #269c40">
+                        Compiler Explorer
+                    </a>
+                </li>
+                <li>
+                    <a href="https://redasm.io" style="color: #c03131">
+                        REDasm
+                    </a>
+                </li>
+                <li>
+                    <a href="https://colorizer.org" style="color: #16344e">
+                        Colorizer
+                    </a>
+                </li>
+                <li>
+                    <a href="https://webaim.org/resources/contrastchecker" style="color: #b8000a">
+                        Contrast Checker
+                    </a>
+                </li>
+            </ul>
+        </main>
     </div>
 </body>
 
