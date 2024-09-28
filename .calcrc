@@ -17,6 +17,10 @@ define dec(v) {
 	return bp(10, v);
 }
 
+define oct(v) {
+	return bp(8, v);
+}
+
 define bin(v) {
 	return bp(2, v);
 }
