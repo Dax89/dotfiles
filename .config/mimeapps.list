@@ -7,10 +7,10 @@ video/mp4=vlc.desktop
 text/plain=nvim-qt.desktop
 application/json=nvim-qt.desktop
 application/pdf=librewolf.desktop
+application/javascript=librewolf.desktop
 application/x-ms-dos-executable=wine.desktop
 image/jpeg=gpicview.desktop
 image/png=gpicview.desktop
-text/html=librewolf.desktop
 image/gif=gpicview.desktop
 inode/directory=vifm.desktop
 image/bmp=gpicview.desktop
@@ -24,12 +24,10 @@ image/x-portable-bitmap=gpicview.desktop
 image/x-targa=gpicview.desktop
 image/x-portable-greymap=gpicview.desktop
 application/pcx=gpicview.desktop
+text/html=librewolf.desktop
 image/svg+xml=librewolf.desktop
 image/svg-xml=librewolf.desktop
 x-scheme-handler/http=librewolf.desktop
 x-scheme-handler/https=librewolf.desktop
 x-scheme-handler/about=librewolf.desktop
 x-scheme-handler/tonsite=org.telegram.desktop.desktop
-
-[Added Associations]
-x-scheme-handler/tonsite=org.telegram.desktop.desktop;
