@@ -1,8 +1,8 @@
 #!/bin/sh
 
 execute_if() {
-    if which "$1" > /dev/null && ! pgrep -f "$1" > /dev/null; then
-        "$1" &
+    if which "$1" >/dev/null && ! pgrep -f "$1" >/dev/null; then
+        "$1" "$2" &
     fi
 }
 
@@ -10,4 +10,4 @@ dunstify -a 'Startup' 'Starting applications'
 
 execute_if 'telegram-desktop'
 execute_if 'thunderbird'
-execute_if 'steam'
+execute_if 'steam' '-silent'
