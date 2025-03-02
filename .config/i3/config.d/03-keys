@@ -1,5 +1,5 @@
 set $terminal kitty
-set $browser librewolf
+set $browser brave-browser
 
 # Start Rofi
 bindsym XF86Launch1 $exec "rofi -show drun"
