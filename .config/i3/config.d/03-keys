@@ -48,7 +48,7 @@ bindsym $mod+Return $exec "$terminal --single-instance"
 bindsym $mod+Shift+i $exec "$terminal --class=repl calc"
 bindsym $mod+Shift+n $exec "nvim-qt"
 bindsym $mod+Shift+b $exec "$browser"
-bindsym $mod+Shift+p $exec "$browser --private-window"
+bindsym $mod+Shift+p $exec "$browser --incognito"
 bindsym $mod+Shift+s $exec "~/.config/i3/scripts/startup.sh"
 bindsym $mod+Shift+Return $exec "$terminal vifm"
 
