@@ -49,4 +49,6 @@ xset s off &
 
 # Faster repeat rate
 xset r rate 250 50 &
-exec i3
+
+# exec i3
+exec dbus-run-session -- /usr/bin/i3
