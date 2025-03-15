@@ -51,7 +51,7 @@ nnoremap S :sort<CR>
 nnoremap w :view<CR>
 vnoremap w :view<CR>gv
 
-if $DISPLAY && executable('nvim-qt')
+if $DISPLAY != "" && executable('nvim-qt')
     " Open file in new instance of nvim-qt
     nnoremap O :!nvim-qt %f<CR>
 endif
@@ -65,7 +65,7 @@ if has('win')
     nnoremap yp :!echo %"d:gs!\!/! %i | clip<CR>
     " Yank path to current file to Windows clipboard with forward slashes
     nnoremap yf :!echo %"c:gs!\!/! %i | clip<CR>
-elseif $WAYLAND_DISPLAY
+elseif $WAYLAND_DISPLAY != ""
     if executable('wl-copy')
         " Yank current directory path into primary and selection clipboards
         nnoremap yd :!echo -n %d | wl-copy %i &&
@@ -74,7 +74,7 @@ elseif $WAYLAND_DISPLAY
         nnoremap yf :!echo -n %c:p | wl-copy %i &&
                     \ echo -n %c:p | wl-copy -p %i<CR>
     endif
-elseif $DISPLAY
+elseif $DISPLAY != ""
     if executable('xclip')
         " Yank current directory path into the clipboard
         nnoremap yd :!echo %d | xclip %i<CR>
@@ -109,9 +109,9 @@ nnoremap cc cw<c-u>
 nnoremap A cw
 
 " Open console in current directory
-if $DISPLAY && executable('xterm')
+if $DISPLAY != "" && executable('xterm')
     nnoremap ,T :!xterm &<CR>
-elseif $TERMINAL
+elseif $TERMINAL != ""
     nnoremap ,T :!$TERMINAL &<CR>
 endif
 
