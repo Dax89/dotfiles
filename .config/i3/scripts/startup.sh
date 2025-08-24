@@ -9,6 +9,6 @@ execute_if() {
 dunstify -a 'Startup' 'Starting applications'
 
 execute_if 'Discord'
-execute_if 'telegram-desktop'
+execute_if 'Telegram'
 execute_if 'thunderbird'
 execute_if 'steam' '-silent'
