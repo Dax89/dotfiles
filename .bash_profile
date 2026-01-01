@@ -9,6 +9,7 @@ alias dotfiles='/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias icat="kitten icat"
 alias syncapps='$HOME/.me/apps/sync_apps.sh'
 alias fetch='curl -O'
+# alias vlime='sbcl --load $XDG_DATA_HOME/nvim/lazy/vlime/lisp/start-vlime.lisp'
 
 # Set Environment Variables
 export QT_QPA_PLATFORMTHEME=qt5ct
@@ -34,6 +35,10 @@ export QL_LOCAL_PROJECTS="$XDG_DATA_HOME/quicklisp"
 export XBPS_SRC_ROOT="$XDG_DATA_HOME/void/void-packages"
 # Update PATH variable
 PATH="$PATH:$HOME/.local/bin" # local binaries
+
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init - bash)"
 
 # Bash Appearance
 PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${LOGNAME}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
