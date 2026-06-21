@@ -8,9 +8,13 @@ for_window [class="Nitrogen"] floating enable
 for_window [class="Gpicview"] floating enable
 for_window [class="Vampire_Survivors"] floating enable
 for_window [class="^VirtualBox"] floating enable
-for_window [class="^steam"] floating enable
 for_window [class="^Blueman"] floating enable
 for_window [class="^Virt-manager"] floating enable
 for_window [all] title_window_icon padding 3px
+
+# steam fixes
+for_window [class="steam"] floating enable
+for_window [instance="steamwebhelper"] floating enable floating_minimum_size 0 x 0 floating_maximum_size 0 x 0
+no_focus [instance="steamwebhelper"]
 
 # vi: ft=i3config
