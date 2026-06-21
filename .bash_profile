@@ -29,9 +29,9 @@ export XDG_STATE_HOME="$HOME/.local/state"
 
 # Configure Misc
 export JQ_COLORS="0;37:0;35:0;35:0;33:0;32:1;39:1;39:1;34"
-export UNISON="$XDG_DATA_HOME/unison"
+#export UNISON="$XDG_DATA_HOME/unison"
 export GOPATH="$XDG_DATA_HOME/go"
-export QL_LOCAL_PROJECTS="$XDG_DATA_HOME/quicklisp"
+#export QL_LOCAL_PROJECTS="$XDG_DATA_HOME/quicklisp"
 export XBPS_SRC_ROOT="$XDG_DATA_HOME/void/void-packages"
 # Update PATH variable
 PATH="$PATH:$HOME/.local/bin" # local binaries
